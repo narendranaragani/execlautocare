@@ -7,7 +7,6 @@ import { useGetStats, getGetStatsQueryKey } from "@workspace/api-client-react";
 import { Wrench, Droplet, Settings, Calendar, Shield, ChevronLeft, ChevronRight, Star, User, Quote, ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
 
 export function HeroTicker() {
@@ -132,16 +131,24 @@ export function AboutPreview() {
     >
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Framed Image */}
-          <div className="lg:col-span-5 gsap-reveal-about">
-            <div className="relative overflow-hidden rounded-2xl shadow-xl p-4 bg-white border border-[#e2e8f0]">
-              <div className="relative overflow-hidden rounded-xl aspect-[4/3] lg:aspect-square">
-                <img
-                  src="https://i.pinimg.com/736x/a1/b0/9b/a1b09b46d804c7fc2541750b28d780a8.jpg"
-                  alt="workshop"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                />
-              </div>
+          {/* Left Column: Overlapping Collage of Repair Images */}
+          <div className="lg:col-span-5 relative min-h-[350px] sm:min-h-[420px] lg:min-h-[460px] gsap-reveal-about">
+            {/* First Main Image */}
+            <div className="w-[82%] aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 p-2 bg-white">
+              <img
+                src="https://i.pinimg.com/736x/e4/7e/44/e47e447d37b47b856e9b8fab3d746e39.jpg"
+                alt="Mechanic repairing car engine under the hood"
+                className="w-full h-full object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+
+            {/* Second Overlapping Image */}
+            <div className="absolute right-0 bottom-4 w-[65%] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white p-1.5 bg-white z-10 transition-all duration-300 hover:scale-[1.03]">
+              <img
+                src="https://i.pinimg.com/1200x/41/f5/c6/41f5c68e06005373c8922f47aad22edc.jpg"
+                alt="Car on a hydraulic lift undergoing repair"
+                className="w-full h-full object-cover rounded-xl"
+              />
             </div>
           </div>
 
@@ -547,7 +554,7 @@ export function CTABanner() {
     <section ref={containerRef} className="py-24 bg-gradient-to-br from-[#0c2340] via-[#091b30] to-[#05101d] relative overflow-hidden border-t border-white/5">
       {/* Decorative top border line with subtle glow */}
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-[#0056b3]/50 to-transparent" />
-      
+
       {/* Ambient background glows */}
       <div className="absolute -left-16 -top-16 w-[350px] h-[350px] bg-[#0056b3]/15 rounded-full blur-[100px] pointer-events-none z-0" />
       <div className="absolute -right-16 -bottom-16 w-[350px] h-[350px] bg-[#8ab4f8]/10 rounded-full blur-[100px] pointer-events-none z-0" />
@@ -565,7 +572,7 @@ export function CTABanner() {
               Genuine parts. Expert technicians. Transparent pricing. Drop your car — we'll handle the rest.
             </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full lg:w-auto items-center justify-center">
             <Button size="lg" asChild className="hover-beam bg-white text-[#0c2340] hover:bg-white/95 font-bold shadow-lg rounded-xl px-8 py-6 h-auto text-base border-0 w-full sm:w-auto cursor-pointer transition-all duration-300">
               <Link href="/booking">Book Service Now</Link>

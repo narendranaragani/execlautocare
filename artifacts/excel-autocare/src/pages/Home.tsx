@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -6,28 +6,27 @@ import { useGetStats, getGetStatsQueryKey } from "@workspace/api-client-react";
 import { Wrench, Droplet, Settings, Calendar, Shield, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function HeroTicker() {
   return (
-    <div className="w-full bg-primary text-white py-2.5 overflow-hidden border-b border-accent/20 relative z-10">
-      <div className="flex whitespace-nowrap animate-ticker">
+    <div className="w-full bg-[#07111f] text-white py-3 overflow-hidden border-b border-accent/20 relative z-10">
+      <div className="flex whitespace-nowrap animate-ticker" style={{ animationDuration: '20s' }}>
         {Array.from({ length: 4 }).map((_, i) => (
           <div key={i} className="flex items-center">
-            <span className="text-xs font-semibold mx-4 uppercase tracking-widest">Genuine Parts</span>
-            <span className="text-accent">&#8226;</span>
-            <span className="text-xs font-semibold mx-4 uppercase tracking-widest text-accent/80">Expert Mechanics</span>
-            <span className="text-accent">&#8226;</span>
-            <span className="text-xs font-semibold mx-4 uppercase tracking-widest">Transparent Pricing</span>
-            <span className="text-accent">&#8226;</span>
-            <span className="text-xs font-semibold mx-4 uppercase tracking-widest text-accent/80">Quick Turnaround</span>
-            <span className="text-accent">&#8226;</span>
-            <span className="text-xs font-semibold mx-4 uppercase tracking-widest">Advanced Diagnostics</span>
-            <span className="text-accent">&#8226;</span>
-            <span className="text-xs font-semibold mx-4 uppercase tracking-widest text-accent/80">Authorized Maruti Suzuki Center</span>
-            <span className="text-accent">&#8226;</span>
+            <span className="text-xs font-bold mx-4 uppercase tracking-widest text-accent">Genuine Parts</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,163,255,0.8)]"></span>
+            <span className="text-xs font-bold mx-4 uppercase tracking-widest text-white">Expert Mechanics</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,163,255,0.8)]"></span>
+            <span className="text-xs font-bold mx-4 uppercase tracking-widest text-accent">Transparent Pricing</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,163,255,0.8)]"></span>
+            <span className="text-xs font-bold mx-4 uppercase tracking-widest text-white">Quick Turnaround</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,163,255,0.8)]"></span>
+            <span className="text-xs font-bold mx-4 uppercase tracking-widest text-accent">Advanced Diagnostics</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,163,255,0.8)]"></span>
+            <span className="text-xs font-bold mx-4 uppercase tracking-widest text-white">Authorized Maruti Suzuki Center</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(0,163,255,0.8)]"></span>
           </div>
         ))}
       </div>
@@ -37,12 +36,14 @@ export function HeroTicker() {
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center bg-primary text-white overflow-hidden pt-20">
-      <div className="absolute inset-0 opacity-[0.04] z-0" 
-        style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)", backgroundSize: "40px 40px" }}>
-      </div>
+    <section className="relative min-h-[100dvh] flex items-center bg-[#07111f] text-white overflow-hidden pt-20">
+      {/* Deep radial gradient glow */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-accent opacity-5 rounded-full blur-[120px] pointer-events-none"></div>
       
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-accent opacity-15 transform rotate-12 translate-x-1/4 scale-150 z-0"></div>
+      {/* Subtle grid overlay */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none" 
+        style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)", backgroundSize: "60px 60px" }}>
+      </div>
 
       <div className="container relative z-10 px-4 py-20 mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -53,90 +54,104 @@ export function Hero() {
               transition={{ duration: 0.6 }}
               className="space-y-6"
             >
-              <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide shadow-sm">
+              <div className="inline-block bg-accent/10 border border-accent/20 text-accent px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(0,163,255,0.2)]">
                 Official Maruti Suzuki Authorized Workshop
               </div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1]">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-black leading-[1.1] uppercase tracking-tight">
                 <motion.span 
                   initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}
-                  className="block"
+                  className="block text-white"
                 >Your Trusted</motion.span>
                 <motion.span 
                   initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
-                  className="block text-blue-400 gradient-text"
+                  className="block gradient-text-blue"
                 >Maruti Suzuki</motion.span>
                 <motion.span 
                   initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.6 }}
-                  className="block"
+                  className="block text-white"
                 >Care Experts</motion.span>
               </h1>
               
               <motion.p 
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.6 }}
-                className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed"
+                className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed font-sans"
               >
                 Mechanical precision meets local trust. Dealer-grade diagnostics, genuine spare parts, and showroom-quality paint jobs with the warmth of a neighborhood garage.
               </motion.p>
               
               <motion.div 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.6 }}
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65, duration: 0.6 }}
                 className="flex flex-wrap gap-4 pt-4"
               >
-                <Button size="lg" asChild className="hover-beam bg-accent hover:bg-accent/90 text-white px-8 h-14 text-lg shadow-[0_0_30px_rgba(0,86,179,0.4)]">
+                <Button size="lg" asChild className="hover-beam bg-accent pulse-glow text-white px-8 h-14 text-sm font-bold uppercase tracking-wide">
                   <Link href="/booking">Book Service Now</Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="border-white/20 hover:bg-white/10 text-white h-14 px-8 text-lg backdrop-blur-sm">
+                <Button size="lg" variant="outline" asChild className="border-white/20 hover:bg-white/5 text-white h-14 px-8 text-sm font-bold uppercase tracking-wide backdrop-blur-sm">
                   <a href="tel:+919876543210">Call Now</a>
                 </Button>
               </motion.div>
             </motion.div>
           </div>
           
-          <div className="lg:col-span-5 hidden lg:block relative">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="relative"
-            >
-              <div className="glass-card rounded-2xl p-8 border border-accent/30 shadow-2xl relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent"></div>
-                <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-                  <path d="M 50 140 L 40 100 C 40 100, 45 80, 70 70 L 120 60 C 130 50, 150 40, 180 40 L 260 40 C 290 40, 310 50, 320 70 L 360 90 C 370 100, 380 110, 380 140 Z" stroke="white" strokeWidth="4" strokeLinejoin="round" />
-                  <path d="M 40 100 L 380 100" stroke="white" strokeWidth="2" opacity="0.5" />
-                  <circle cx="100" cy="140" r="24" stroke="white" strokeWidth="4" />
-                  <circle cx="310" cy="140" r="24" stroke="white" strokeWidth="4" />
-                  <path d="M 170 40 L 150 100" stroke="white" strokeWidth="3" />
-                  <path d="M 260 40 L 270 100" stroke="white" strokeWidth="3" />
-                </svg>
-              </div>
+          <div className="lg:col-span-5 hidden lg:block relative h-[400px]">
+            {/* Ground reflection */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-[20px] bg-accent/30 blur-xl rounded-full"></div>
+            
+            <div className="absolute inset-0 flex items-center justify-center">
+              <svg viewBox="0 0 500 260" className="w-full h-auto text-white headlight-glow drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+                {/* Body outline */}
+                <path d="M 60 165 L 55 120 C 55 110, 70 90, 100 78 L 160 60 C 175 45, 200 38, 235 38 L 310 38 C 345 38, 365 48, 380 65 L 430 105 C 445 115, 455 130, 455 165 Z" stroke="currentColor" strokeWidth="5" strokeLinejoin="round" fill="none"/>
+                {/* Windshield */}
+                <path d="M 160 60 L 145 120" stroke="currentColor" strokeWidth="3.5" opacity="0.7"/>
+                {/* Rear window */}
+                <path d="M 310 38 L 325 110" stroke="currentColor" strokeWidth="3.5" opacity="0.7"/>
+                {/* Door line */}
+                <line x1="220" y1="42" x2="210" y2="120" stroke="currentColor" strokeWidth="2" opacity="0.4"/>
+                {/* Roof rack detail */}
+                <line x1="175" y1="42" x2="305" y2="40" stroke="currentColor" strokeWidth="2" opacity="0.5"/>
 
-              {/* Floating Badges */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute -top-6 -right-6 glass-card px-4 py-2 rounded-full border border-white/20 shadow-lg flex items-center gap-2"
-              >
-                <Shield className="w-4 h-4 text-accent" />
-                <span className="text-sm font-semibold text-white">Genuine Parts</span>
-              </motion.div>
-              
-              <motion.div 
-                animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                className="absolute top-1/2 -left-12 glass-card px-4 py-2 rounded-full border border-white/20 shadow-lg flex items-center gap-2"
-              >
-                <Settings className="w-4 h-4 text-accent" />
-                <span className="text-sm font-semibold text-white">OBD Diagnostics</span>
-              </motion.div>
-              
-              <motion.div 
-                animate={{ y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 2 }}
-                className="absolute -bottom-6 right-10 glass-card px-4 py-2 rounded-full border border-white/20 shadow-lg flex items-center gap-2"
-              >
-                <Star className="w-4 h-4 text-accent" fill="currentColor" />
-                <span className="text-sm font-semibold text-white">12+ Years</span>
-              </motion.div>
-            </motion.div>
+                {/* Rear Wheel Group */}
+                <motion.g 
+                  style={{ transformOrigin: '120px 170px' }}
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                >
+                  <circle cx="120" cy="170" r="35" stroke="currentColor" strokeWidth="5" fill="#07111f"/>
+                  <circle cx="120" cy="170" r="10" fill="currentColor"/>
+                  <line x1="120" y1="135" x2="120" y2="205" stroke="currentColor" strokeWidth="3" opacity="0.5" />
+                  <line x1="85" y1="170" x2="155" y2="170" stroke="currentColor" strokeWidth="3" opacity="0.5" />
+                </motion.g>
+
+                {/* Front Wheel Group */}
+                <motion.g 
+                  style={{ transformOrigin: '390px 170px' }}
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                >
+                  <circle cx="390" cy="170" r="35" stroke="currentColor" strokeWidth="5" fill="#07111f"/>
+                  <circle cx="390" cy="170" r="10" fill="currentColor"/>
+                  <line x1="390" y1="135" x2="390" y2="205" stroke="currentColor" strokeWidth="3" opacity="0.5" />
+                  <line x1="355" y1="170" x2="425" y2="170" stroke="currentColor" strokeWidth="3" opacity="0.5" />
+                </motion.g>
+              </svg>
+            </div>
+
+            {/* Floating Badges */}
+            <div className="absolute top-[10%] -right-4 glass-card-blue px-4 py-2 flex items-center gap-2 float-badge-1 neon-border rounded-xl">
+              <Shield className="w-4 h-4 text-accent" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">Genuine Parts</span>
+            </div>
+            
+            <div className="absolute top-[40%] -left-10 glass-card-blue px-4 py-2 flex items-center gap-2 float-badge-2 neon-border rounded-xl">
+              <Settings className="w-4 h-4 text-accent" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">Diagnostics</span>
+            </div>
+            
+            <div className="absolute bottom-[10%] right-[10%] glass-card-blue px-4 py-2 flex items-center gap-2 float-badge-3 neon-border rounded-xl">
+              <Star className="w-4 h-4 text-accent" fill="currentColor" />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">12+ Years</span>
+            </div>
           </div>
         </div>
       </div>
@@ -161,35 +176,35 @@ export function AboutPreview() {
   }, []);
 
   return (
-    <section ref={containerRef} className="flex flex-col lg:flex-row min-h-[600px]">
-      <div className="lg:w-1/2 bg-primary text-white p-12 lg:p-24 flex flex-col justify-center">
+    <section ref={containerRef} className="flex flex-col lg:flex-row min-h-[600px] border-b border-white/5">
+      <div className="lg:w-1/2 bg-[#07111f] text-white p-12 lg:p-24 flex flex-col justify-center">
         <div className="max-w-xl mx-auto lg:mx-0 gsap-reveal-about">
-          <span className="text-accent font-semibold tracking-wider uppercase text-sm mb-4 block">About Excel Autocare</span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">Where Precision Meets Trust</h2>
-          <p className="text-slate-300 text-lg leading-relaxed mb-8">
+          <span className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">About Excel Autocare</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight">Where Precision Meets Trust</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed mb-8">
             We operate on a simple philosophy: dealership-level technology combined with transparent, honest pricing. No hidden fees, no unnecessary replacements—just expert care for your Maruti Suzuki.
           </p>
-          <Button variant="link" asChild className="text-white hover:text-accent p-0 h-auto text-lg font-semibold flex items-center gap-2 group">
+          <Button variant="link" asChild className="text-accent hover:text-white p-0 h-auto text-sm font-bold uppercase tracking-wider flex items-center gap-2 group">
             <Link href="/about">
               Learn More <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </Button>
         </div>
       </div>
-      <div className="lg:w-1/2 bg-slate-50 p-12 lg:p-24 flex items-center">
+      <div className="lg:w-1/2 bg-[#0d1b2a] p-12 lg:p-24 flex items-center border-l border-white/5">
         <div className="grid sm:grid-cols-2 gap-6 w-full">
           {[
             { icon: <Settings className="w-6 h-6"/>, title: "10-Bay Facility", desc: "State-of-the-art lifts and tools" },
             { icon: <Shield className="w-6 h-6"/>, title: "OBD Diagnostics", desc: "Computerized error scanning" },
-            { icon: <Droplet className="w-6 h-6"/>, title: "Thermal Baking Booth", desc: "Showroom-finish paint jobs" },
-            { icon: <Wrench className="w-6 h-6"/>, title: "Genuine Parts Only", desc: "100% Maruti Genuine Parts" }
+            { icon: <Droplet className="w-6 h-6"/>, title: "Thermal Baking", desc: "Showroom-finish paint jobs" },
+            { icon: <Wrench className="w-6 h-6"/>, title: "Genuine Parts", desc: "100% Maruti Genuine Parts" }
           ].map((feature, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-border gsap-reveal-about">
-              <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-6">
+            <div key={i} className="glass-card neon-border p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 gsap-reveal-about">
+              <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-6 headlight-glow-sm">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-primary mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.desc}</p>
+              <h3 className="text-lg font-heading font-bold text-white mb-2">{feature.title}</h3>
+              <p className="text-sm text-muted-foreground">{feature.desc}</p>
             </div>
           ))}
         </div>
@@ -217,29 +232,30 @@ export function ServicesOverview() {
   const services = [
     { title: "Body Repair", icon: <Wrench />, desc: "Laser-guided chassis alignment and dent removal." },
     { title: "Paint Services", icon: <Droplet />, desc: "Computerized color matching and clear-coat repair." },
-    { title: "Mechanical Works", icon: <Settings />, desc: "Advanced engine diagnostics and component repair." },
-    { title: "Periodic Maintenance", icon: <Calendar />, desc: "Comprehensive fluid, filter, and multi-point checks." },
+    { title: "Mechanical", icon: <Settings />, desc: "Advanced engine diagnostics and component repair." },
+    { title: "Maintenance", icon: <Calendar />, desc: "Comprehensive fluid, filter, and multi-point checks." },
     { title: "Genuine Parts", icon: <Shield />, desc: "100% OEM parts for durability and factory safety." },
   ];
 
   return (
-    <section ref={containerRef} className="py-24 bg-white">
+    <section ref={containerRef} className="py-32 bg-[#0d1b2a] border-b border-white/5">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">Complete Car Care Solutions</h2>
-          <div className="w-24 h-1 bg-accent mx-auto rounded-full mb-6"></div>
+          <span className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">Premium Services</span>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-8">Complete Car Care</h2>
+          <div className="section-speed-divider mx-auto w-32 mb-8"></div>
           <p className="text-muted-foreground text-lg">From routine oil changes to complex structural repairs, our facility is equipped for every requirement.</p>
         </div>
         
         <div className="flex flex-wrap justify-center gap-6">
           {services.map((service, i) => (
-            <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-slate-50 border border-border rounded-2xl p-8 service-card-lift gsap-reveal-service">
-              <div className="w-14 h-14 bg-accent rounded-full flex items-center justify-center text-white mb-6 shadow-lg shadow-accent/20">
+            <div key={i} className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] glass-card neon-border rounded-2xl p-8 service-card-lift gsap-reveal-service">
+              <div className="w-14 h-14 bg-accent/10 border border-accent/20 rounded-full flex items-center justify-center text-accent mb-6 headlight-glow-sm">
                 {service.icon}
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-3">{service.title}</h3>
-              <p className="text-muted-foreground mb-6 leading-relaxed">{service.desc}</p>
-              <Link href="/services" className="text-accent font-semibold flex items-center gap-2 group">
+              <h3 className="text-xl font-heading font-bold text-white mb-3">{service.title}</h3>
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{service.desc}</p>
+              <Link href="/services" className="text-accent text-xs font-bold uppercase tracking-wider flex items-center gap-2 group">
                 Learn More <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
             </div>
@@ -273,7 +289,18 @@ function Counter({ end, duration = 2 }: { end: number, duration?: number }) {
     window.requestAnimationFrame(step);
   }, [isInView, end, duration]);
 
-  return <span ref={ref}>{count.toLocaleString()}</span>;
+  return (
+    <motion.span 
+      key={count} 
+      initial={{ y: 5, opacity: 0.8 }} 
+      animate={{ y: 0, opacity: 1 }} 
+      transition={{ duration: 0.1 }}
+      className="inline-block"
+      ref={ref}
+    >
+      {count.toLocaleString()}
+    </motion.span>
+  );
 }
 
 export function Stats() {
@@ -287,8 +314,10 @@ export function Stats() {
   };
 
   return (
-    <section className="py-20 bg-primary border-t border-accent relative overflow-hidden">
-      <div className="absolute inset-0 bg-accent/5"></div>
+    <section className="py-24 bg-[#07111f] relative overflow-hidden border-b border-white/5">
+      {/* Horizontal accent stripe */}
+      <div className="absolute top-1/2 left-0 w-full h-[2px] bg-accent/20 shadow-[0_0_20px_rgba(0,163,255,0.5)] z-0"></div>
+      
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
           {[
@@ -297,11 +326,11 @@ export function Stats() {
             { label: "Certified Techs", value: displayStats.certifiedTechnicians, suffix: "" },
             { label: "Satisfaction Rate", value: displayStats.customerSatisfaction, suffix: "%" },
           ].map((stat, i) => (
-            <div key={i} className="space-y-3">
-              <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
+            <div key={i} className="space-y-4 bg-[#07111f] py-4">
+              <h3 className="text-4xl md:text-6xl font-heading font-black text-white tracking-tight">
                 <Counter end={stat.value} />{stat.suffix}
               </h3>
-              <p className="text-accent font-semibold tracking-wide uppercase text-sm">{stat.label}</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-xs">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -339,55 +368,57 @@ export function Testimonials() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
   return (
-    <section className="py-24 bg-gradient-to-b from-primary to-[#0a1e38] text-white overflow-hidden">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16">What Our Customers Say</h2>
+    <section className="py-32 bg-[#07111f] text-white overflow-hidden border-b border-white/5 relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0d1b2a]"></div>
+      <div className="container mx-auto px-4 text-center relative z-10">
+        <span className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">Client Stories</span>
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-16">What Drivers Say</h2>
         
         <div className="max-w-4xl mx-auto relative h-[300px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="glass-card p-8 md:p-12 rounded-3xl absolute w-full"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="glass-card neon-border p-8 md:p-12 rounded-2xl absolute w-full"
             >
               <div className="flex justify-center gap-1 mb-6">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
+                  <Star key={i} className="w-5 h-5 text-accent fill-accent" />
                 ))}
               </div>
-              <p className="text-xl md:text-2xl text-slate-200 leading-relaxed font-medium italic mb-8">
+              <p className="text-lg md:text-xl text-white leading-relaxed font-sans italic mb-8">
                 "{testimonials[current].quote}"
               </p>
               <div>
-                <p className="font-bold text-white text-lg">{testimonials[current].author}</p>
-                <p className="text-accent">{testimonials[current].car}</p>
+                <p className="font-bold text-white text-base tracking-wide uppercase">{testimonials[current].author}</p>
+                <p className="text-muted-foreground text-sm mt-1">{testimonials[current].car}</p>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
         <div className="flex justify-center gap-4 mt-8">
-          <Button variant="outline" size="icon" className="rounded-full border-white/20 text-white hover:bg-white/10" onClick={() => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)}>
+          <Button variant="outline" size="icon" className="rounded-full border-white/20 text-white hover:bg-white/10 hover:text-accent" onClick={() => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)}>
             <ChevronLeft className="w-5 h-5" />
           </Button>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 mx-4">
             {testimonials.map((_, i) => (
               <button 
                 key={i} 
                 onClick={() => setCurrent(i)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${i === current ? "bg-accent w-8" : "bg-white/30 hover:bg-white/50"}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? "bg-accent w-8" : "bg-white/20 w-2 hover:bg-white/50"}`}
               />
             ))}
           </div>
-          <Button variant="outline" size="icon" className="rounded-full border-white/20 text-white hover:bg-white/10" onClick={() => setCurrent((prev) => (prev + 1) % testimonials.length)}>
+          <Button variant="outline" size="icon" className="rounded-full border-white/20 text-white hover:bg-white/10 hover:text-accent" onClick={() => setCurrent((prev) => (prev + 1) % testimonials.length)}>
             <ChevronRight className="w-5 h-5" />
           </Button>
         </div>
@@ -413,20 +444,20 @@ export function CTABanner() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative py-20 bg-primary overflow-hidden">
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-accent/20 to-transparent transform -skew-x-12"></div>
+    <section ref={containerRef} className="relative py-24 bg-[#07111f] overflow-hidden">
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-accent/10 to-transparent transform -skew-x-12 scale-150"></div>
       
       <div className="container relative z-10 mx-auto px-4 gsap-reveal-cta">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+        <div className="glass-card neon-border rounded-3xl p-12 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-10">
           <div className="text-center lg:text-left">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Book Your Service Today</h2>
-            <p className="text-slate-300 text-lg max-w-xl">Genuine parts. Expert technicians. Transparent pricing. Drop your car — we'll handle the rest.</p>
+            <h2 className="text-4xl md:text-5xl font-heading font-black text-white mb-4 uppercase tracking-tight">Ready for Service?</h2>
+            <p className="text-muted-foreground text-lg max-w-xl font-sans">Genuine parts. Expert technicians. Transparent pricing. Drop your car — we'll handle the rest.</p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-            <Button size="lg" asChild className="hover-beam bg-accent hover:bg-accent/90 text-white h-16 px-10 text-lg w-full sm:w-auto shadow-xl">
+          <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto shrink-0">
+            <Button size="lg" asChild className="hover-beam bg-accent pulse-glow hover:bg-accent/90 text-white h-14 px-10 text-sm font-bold uppercase tracking-wide w-full sm:w-auto">
               <Link href="/booking">Book Service Now</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="border-white/30 hover:bg-white/10 text-white h-16 px-10 text-lg w-full sm:w-auto">
+            <Button size="lg" variant="outline" asChild className="border-white/20 hover:bg-white/5 text-white h-14 px-10 text-sm font-bold uppercase tracking-wide w-full sm:w-auto">
               <a href="tel:+919876543210">Call Now</a>
             </Button>
           </div>

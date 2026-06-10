@@ -39,49 +39,49 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-[#07111f] font-sans">
       {/* Page Header */}
-      <section className="bg-primary pt-36 pb-24 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)", backgroundSize: "40px 40px" }}></div>
+      <section className="pt-36 pb-24 text-white relative border-b border-white/5">
+        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)", backgroundSize: "60px 60px" }}></div>
         <div className="container mx-auto px-4 text-center max-w-4xl relative z-10">
-          <span className="text-accent font-semibold tracking-widest uppercase text-sm mb-4 block">About Excel Autocare</span>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Redefining Automotive Care</h1>
-          <p className="text-xl text-slate-300 leading-relaxed">
+          <span className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">Our Story</span>
+          <h1 className="text-5xl md:text-6xl font-heading font-black mb-6 uppercase tracking-tight">Redefining Automotive Care</h1>
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             We bring dealership-level technology to a neighborhood setting. Honest pricing, genuine parts, and absolute transparency.
           </p>
         </div>
       </section>
 
       {/* Company Story */}
-      <section className="py-24 bg-white">
+      <section className="py-32 bg-[#0d1b2a] border-b border-white/5">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-5">
-              <div className="bg-primary text-white p-12 rounded-3xl shadow-2xl relative">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-20 rounded-bl-full"></div>
-                <h3 className="text-4xl font-bold mb-8">By The Numbers</h3>
+              <div className="glass-card neon-border text-white p-12 rounded-3xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-20 rounded-bl-full blur-xl"></div>
+                <h3 className="text-3xl font-heading font-bold mb-10">By The Numbers</h3>
                 <div className="space-y-8">
                   <div>
-                    <div className="text-5xl font-bold text-accent mb-2">12+</div>
-                    <div className="text-slate-300 font-medium">Years of Excellence</div>
+                    <div className="text-5xl font-black text-accent mb-2 tracking-tight">12+</div>
+                    <div className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Years of Excellence</div>
                   </div>
                   <div className="h-px w-full bg-white/10"></div>
                   <div>
-                    <div className="text-5xl font-bold text-accent mb-2">15k+</div>
-                    <div className="text-slate-300 font-medium">Cars Serviced</div>
+                    <div className="text-5xl font-black text-accent mb-2 tracking-tight">15k+</div>
+                    <div className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Cars Serviced</div>
                   </div>
                   <div className="h-px w-full bg-white/10"></div>
                   <div>
-                    <div className="text-5xl font-bold text-accent mb-2">45</div>
-                    <div className="text-slate-300 font-medium">Certified Technicians</div>
+                    <div className="text-5xl font-black text-accent mb-2 tracking-tight">45</div>
+                    <div className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Certified Technicians</div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-7 space-y-6">
-              <h2 className="text-4xl font-bold text-primary">Our Mission & Vision</h2>
-              <div className="w-20 h-1 bg-accent rounded-full"></div>
-              <p className="text-lg text-muted-foreground leading-relaxed pt-4">
+            <div className="lg:col-span-7 space-y-8">
+              <h2 className="text-4xl font-heading font-bold text-white">Our Mission & Vision</h2>
+              <div className="w-20 h-1 bg-accent rounded-full shadow-[0_0_10px_rgba(0,163,255,0.5)]"></div>
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 Excel Autocare was founded on a very simple premise: getting your vehicle serviced should not be stressful, confusing, or unnecessarily expensive. For over a decade, we have been bridging the gap between the high technical standards of an official dealership and the personal touch of a local mechanic.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -93,46 +93,50 @@ export default function About() {
       </section>
 
       {/* Values Grid */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-32 bg-[#07111f] border-b border-white/5">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold text-primary mb-6">Our Core Values</h2>
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">Principles</span>
+            <h2 className="text-4xl font-heading font-bold text-white mb-6">Our Core Values</h2>
             <p className="text-muted-foreground text-lg">The principles that guide every repair and every customer interaction.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-border service-card-lift">
-              <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-8">
-                <Shield className="w-7 h-7" />
+            <div className="glass-card neon-border p-10 rounded-2xl service-card-lift">
+              <div className="w-14 h-14 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center text-accent mb-8 headlight-glow-sm">
+                <Shield className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-4">Absolute Transparency</h3>
-              <p className="text-muted-foreground leading-relaxed">We show you the replaced parts. We explain the bill line by line. No hidden charges, no unnecessary upselling. You approve every repair before we begin.</p>
+              <h3 className="text-xl font-heading font-bold text-white mb-4">Absolute Transparency</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">We show you the replaced parts. We explain the bill line by line. No hidden charges, no unnecessary upselling. You approve every repair before we begin.</p>
             </div>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-border service-card-lift">
-              <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-8">
-                <CheckCircle2 className="w-7 h-7" />
+            <div className="glass-card neon-border p-10 rounded-2xl service-card-lift">
+              <div className="w-14 h-14 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center text-accent mb-8 headlight-glow-sm">
+                <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-4">Genuine Parts Only</h3>
-              <p className="text-muted-foreground leading-relaxed">We strictly use 100% Maruti Suzuki Genuine Parts (MGP). This ensures your factory warranty remains completely intact and your car performs optimally.</p>
+              <h3 className="text-xl font-heading font-bold text-white mb-4">Genuine Parts Only</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">We strictly use 100% Maruti Suzuki Genuine Parts (MGP). This ensures your factory warranty remains completely intact and your car performs optimally.</p>
             </div>
-            <div className="bg-white p-10 rounded-2xl shadow-sm border border-border service-card-lift">
-              <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-8">
-                <Zap className="w-7 h-7" />
+            <div className="glass-card neon-border p-10 rounded-2xl service-card-lift">
+              <div className="w-14 h-14 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center text-accent mb-8 headlight-glow-sm">
+                <Zap className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-primary mb-4">Technical Mastery</h3>
-              <p className="text-muted-foreground leading-relaxed">Our mechanics undergo continuous training on the latest Maruti Suzuki diagnostic protocols. We invest heavily in state-of-the-art tools and technology.</p>
+              <h3 className="text-xl font-heading font-bold text-white mb-4">Technical Mastery</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">Our mechanics undergo continuous training on the latest Maruti Suzuki diagnostic protocols. We invest heavily in state-of-the-art tools and technology.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Vertical Animated Timeline */}
-      <section className="py-32 bg-white overflow-hidden" ref={timelineRef}>
+      <section className="py-32 bg-[#0d1b2a] overflow-hidden border-b border-white/5" ref={timelineRef}>
         <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-4xl font-bold text-primary text-center mb-24">Our Journey</h2>
+          <div className="text-center mb-24">
+            <span className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">History</span>
+            <h2 className="text-4xl font-heading font-bold text-white">Our Journey</h2>
+          </div>
           
           <div className="relative">
             {/* Center Line */}
-            <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-accent/20 transform md:-translate-x-1/2"></div>
+            <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-px bg-accent/30 transform md:-translate-x-1/2"></div>
             
             <div className="space-y-16 md:space-y-24">
               {timeline.map((item, index) => {
@@ -141,14 +145,14 @@ export default function About() {
                   <div key={item.year} className="timeline-item relative flex flex-col md:flex-row items-center justify-between w-full">
                     
                     {/* Center Dot */}
-                    <div className="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-accent ring-4 ring-white ring-offset-0 transform -translate-x-1/2 z-10 mt-6 md:mt-0 shadow-md"></div>
+                    <div className="absolute left-[20px] md:left-1/2 w-4 h-4 rounded-full bg-accent ring-4 ring-[#0d1b2a] shadow-[0_0_15px_rgba(0,163,255,0.8)] transform -translate-x-1/2 z-10 mt-6 md:mt-0"></div>
                     
                     {/* Content Left */}
                     <div className={`w-full md:w-[45%] pl-14 md:pl-0 ${isLeft ? "md:pr-12 md:text-right" : "md:order-last md:pl-12 text-left"}`}>
-                      <div className="bg-slate-50 p-8 rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow">
-                        <div className={`text-4xl font-black text-accent/20 mb-2 ${isLeft ? "md:text-right" : "text-left"}`}>{item.year}</div>
-                        <h4 className="text-2xl font-bold text-primary mb-3">{item.title}</h4>
-                        <p className="text-muted-foreground text-lg leading-relaxed">{item.desc}</p>
+                      <div className="glass-card neon-border p-8 rounded-2xl hover:shadow-[0_0_20px_rgba(0,163,255,0.15)] transition-shadow">
+                        <div className={`text-4xl font-heading font-black text-accent/20 mb-2 ${isLeft ? "md:text-right" : "text-left"}`}>{item.year}</div>
+                        <h4 className="text-xl font-heading font-bold text-white mb-3">{item.title}</h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
 
@@ -163,21 +167,18 @@ export default function About() {
       </section>
 
       {/* Certifications */}
-      <section className="py-24 bg-primary text-white">
+      <section className="py-24 bg-[#07111f] text-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Workshop Certifications</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               "Authorized Maruti Suzuki",
               "ISO 9001:2015 Quality",
               "Factory Trained Technicians",
               "Genuine Parts Assured"
             ].map((cert, i) => (
-              <div key={i} className="glass-card p-6 rounded-2xl text-center flex flex-col items-center justify-center gap-4">
-                <Shield className="w-10 h-10 text-accent" />
-                <span className="font-semibold">{cert}</span>
+              <div key={i} className="glass-card border border-white/5 p-8 rounded-2xl text-center flex flex-col items-center justify-center gap-4 hover:border-accent/30 transition-colors">
+                <Shield className="w-8 h-8 text-accent/80" />
+                <span className="font-bold text-sm tracking-wide">{cert}</span>
               </div>
             ))}
           </div>
@@ -185,10 +186,10 @@ export default function About() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 bg-slate-50 text-center">
+      <section className="py-32 bg-[#0d1b2a] text-center border-t border-white/5">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-primary mb-8">Ready to Experience the Difference?</h2>
-          <Button size="lg" asChild className="hover-beam bg-accent hover:bg-accent/90 text-white h-16 px-12 text-lg shadow-xl">
+          <h2 className="text-4xl font-heading font-bold text-white mb-8">Ready to Experience the Difference?</h2>
+          <Button size="lg" asChild className="hover-beam bg-accent hover:bg-accent/90 pulse-glow text-white h-14 px-10 text-sm font-bold uppercase tracking-wide">
             <Link href="/booking">Book Your Next Service</Link>
           </Button>
         </div>

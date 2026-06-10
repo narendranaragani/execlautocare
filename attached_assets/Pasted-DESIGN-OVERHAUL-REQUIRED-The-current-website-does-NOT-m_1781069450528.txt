@@ -1,0 +1,111 @@
+DESIGN OVERHAUL REQUIRED
+
+The current website does NOT match the premium automotive experience shown in the reference website:
+https://www.varunmaruti.com/
+
+REDESIGN THE ENTIRE VISUAL SYSTEM TO CLOSELY MATCH THE LOOK, FEEL, SPACING, TYPOGRAPHY, ANIMATIONS, AND USER EXPERIENCE OF THE REFERENCE WEBSITE.
+
+CRITICAL REQUIREMENTS:
+
+1. AUTOMOTIVE ANIMATIONS (HIGHEST PRIORITY)
+
+The website currently lacks car-focused animations.
+
+Implement premium automotive motion design throughout the site:
+
+* Hero section must include a realistic 3D-style vehicle visual with subtle movement.
+* Car wheels should have slow rotational motion.
+* Headlight glow effects should appear on hover and during section reveals.
+* Vehicle silhouettes should move subtly during scrolling.
+* Speed-line effects and motion blur accents should be used between major sections.
+* Service cards should animate like vehicle components assembling into place.
+* Counters should animate with dashboard-style number transitions.
+* Include premium automotive-inspired loading animations.
+
+PAGE TRANSITIONS:
+
+Replace standard fade transitions.
+
+When navigating between pages:
+
+* A premium hatchback/SUV silhouette drives across the screen.
+* Motion blur follows the vehicle.
+* New page content reveals after the vehicle passes.
+* Transition must feel like a premium automotive commercial.
+
+2. TYPOGRAPHY UPDATE
+
+REMOVE THE CURRENT FONT SYSTEM.
+
+Use:
+
+Headings:
+Montserrat ExtraBold
+
+Body:
+Inter
+
+Buttons:
+Montserrat SemiBold
+
+Requirements:
+
+* Large bold headings.
+* Premium automotive brand feel.
+* Strong visual hierarchy.
+* Spacious typography similar to major automobile websites.
+
+3. COLOR SYSTEM UPDATE
+
+Current colors feel generic.
+
+Use a premium automotive palette:
+
+Primary Background:
+#07111f
+
+Secondary Background:
+#0d1b2a
+
+Primary Accent:
+#00a3ff
+
+Hover Accent:
+#33bbff
+
+Text:
+#ffffff
+
+Muted Text:
+#b8c5d1
+
+Glass Surface:
+rgba(255,255,255,0.08)
+
+The website should feel like a luxury vehicle dashboard at night.
+
+4. LAYOUT STYLE
+
+Match the premium structure of the reference website:
+
+* Large full-width hero sections.
+* More whitespace.
+* Bigger imagery.
+* Automotive storytelling sections.
+* Large image-text combinations.
+* Premium enterprise-level spacing.
+* Smooth section-to-section flow.
+
+5. ANIMATION LIBRARIES
+
+Use:
+
+* GSAP
+* ScrollTrigger
+* Framer Motion
+
+Animations must feel premium, cinematic, and automotive-focused rather than simple fade-ins.
+
+FINAL GOAL:
+
+The finished website should look and feel much closer to Varun Maruti's premium automotive experience, with strong car-themed animations, luxury typography, richer colors, cinematic transitions, and enterprise-level visual quality.

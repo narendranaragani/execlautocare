@@ -71,41 +71,43 @@ export default function Services() {
 
   const getCategoryIcon = (index: number) => {
     switch(index) {
-      case 0: return <Wrench className="w-8 h-8" />;
-      case 1: return <Droplet className="w-8 h-8" />;
-      case 2: return <Settings className="w-8 h-8" />;
-      case 3: return <Calendar className="w-8 h-8" />;
-      default: return <Shield className="w-8 h-8" />;
+      case 0: return <Wrench className="w-6 h-6" />;
+      case 1: return <Droplet className="w-6 h-6" />;
+      case 2: return <Settings className="w-6 h-6" />;
+      case 3: return <Calendar className="w-6 h-6" />;
+      default: return <Shield className="w-6 h-6" />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-24">
+    <div className="min-h-screen bg-[#07111f] font-sans pb-32">
       {/* Header */}
-      <section className="bg-primary pt-36 pb-24 text-white relative">
+      <section className="pt-36 pb-24 text-white relative border-b border-white/5 bg-[#07111f]">
+        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)", backgroundSize: "60px 60px" }}></div>
         <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services</h1>
-          <p className="text-xl text-primary-foreground/80 leading-relaxed">
+          <span className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block">Expertise</span>
+          <h1 className="text-5xl md:text-6xl font-heading font-black mb-6 uppercase tracking-tight">Our Services</h1>
+          <p className="text-lg text-muted-foreground leading-relaxed">
             From routine maintenance to complex structural repairs, our authorized facility is equipped for every requirement.
           </p>
         </div>
       </section>
 
       {/* Genuine vs Duplicate Parts */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-[#0d1b2a] border-b border-white/5">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-primary mb-4">Why Genuine Parts Matter</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-heading font-bold text-white mb-4">Why Genuine Parts Matter</h2>
             <p className="text-muted-foreground text-lg">We refuse to compromise on your safety. Here's why we strictly use MGP.</p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="border-2 border-green-500 rounded-3xl p-8 bg-green-50/30 relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-green-500 text-white px-4 py-1 rounded-bl-xl font-bold text-sm">WE USE THIS</div>
-              <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3">
-                <Shield className="text-green-500" /> Genuine Parts (MGP)
+            <div className="border border-green-500/50 rounded-3xl p-10 bg-green-500/5 relative overflow-hidden shadow-[0_0_30px_rgba(34,197,94,0.1)]">
+              <div className="absolute top-0 right-0 bg-green-500/20 border-b border-l border-green-500/30 text-green-400 px-4 py-1.5 rounded-bl-xl font-bold text-xs uppercase tracking-wider">WE USE THIS</div>
+              <h3 className="text-2xl font-heading font-bold text-white mb-8 flex items-center gap-3">
+                <Shield className="text-green-400 w-6 h-6" /> Genuine Parts (MGP)
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {[
                   "Factory warranty remains 100% intact",
                   "OEM-grade quality and manufacturing",
@@ -114,18 +116,18 @@ export default function Services() {
                   "Rigorous safety testing approved"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0" />
-                    <span className="text-slate-700 font-medium">{item}</span>
+                    <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                    <span className="text-slate-300 text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="border-2 border-slate-200 rounded-3xl p-8 bg-slate-50 relative">
-              <h3 className="text-2xl font-bold text-slate-600 mb-6 flex items-center gap-3">
-                <XCircle className="text-red-500" /> Duplicate Parts
+            <div className="border border-red-500/30 rounded-3xl p-10 bg-red-500/5 relative">
+              <h3 className="text-2xl font-heading font-bold text-white mb-8 flex items-center gap-3">
+                <XCircle className="text-red-400 w-6 h-6" /> Duplicate Parts
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {[
                   "Immediately voids your manufacturer warranty",
                   "Lower quality materials and weak construction",
@@ -134,8 +136,8 @@ export default function Services() {
                   "Not certified for high-speed safety"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <XCircle className="w-6 h-6 text-red-400 shrink-0" />
-                    <span className="text-slate-500">{item}</span>
+                    <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                    <span className="text-slate-400 text-sm">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -145,38 +147,38 @@ export default function Services() {
       </section>
 
       {/* Services List */}
-      <div className="container mx-auto px-4 mt-16" ref={containerRef}>
+      <div className="container mx-auto px-4 mt-24" ref={containerRef}>
         <div className="grid lg:grid-cols-12 gap-10">
           
           <div className="lg:col-span-8 space-y-8">
             {categories.map((category, index) => (
               <div 
                 key={category.id} 
-                className="gsap-service-card bg-white rounded-3xl shadow-sm border border-border overflow-hidden"
+                className="gsap-service-card glass-card neon-border rounded-3xl overflow-hidden"
               >
-                <div className="p-8 border-b border-border bg-gradient-to-r from-slate-50 to-white flex items-center gap-6">
-                  <div className="bg-primary text-white p-4 rounded-2xl shadow-md">
+                <div className="p-8 border-b border-white/10 bg-white/5 flex items-center gap-6">
+                  <div className="bg-accent/10 border border-accent/20 text-accent p-4 rounded-2xl headlight-glow-sm">
                     {getCategoryIcon(index)}
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-primary mb-2">{category.name}</h2>
-                    <p className="text-muted-foreground text-lg">{category.description}</p>
+                    <h2 className="text-2xl font-heading font-bold text-white mb-2">{category.name}</h2>
+                    <p className="text-muted-foreground text-sm">{category.description}</p>
                   </div>
                 </div>
                 
-                <div className="p-8">
+                <div className="p-4 sm:p-8">
                   <Accordion type="multiple" className="w-full">
                     {category.services?.map((service) => (
-                      <AccordionItem key={service.id} value={`service-${service.id}`} className="border-b-slate-100">
-                        <AccordionTrigger className="hover:no-underline hover:text-accent font-bold text-primary text-lg py-4">
+                      <AccordionItem key={service.id} value={`service-${service.id}`} className="border-b-white/5">
+                        <AccordionTrigger className="hover:no-underline hover:text-accent font-heading font-bold text-white text-lg py-4">
                           <div className="flex items-center gap-3 text-left">
-                            <div className="w-2 h-2 rounded-full bg-accent/60"></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent"></div>
                             {service.name}
                           </div>
                         </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground pt-2 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                          <span className="text-base leading-relaxed max-w-xl">{service.description}</span>
-                          <Button asChild className="shrink-0 hover-beam bg-accent text-white rounded-full px-6">
+                        <AccordionContent className="text-muted-foreground pt-2 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-6 pl-4">
+                          <span className="text-sm leading-relaxed max-w-xl">{service.description}</span>
+                          <Button asChild className="shrink-0 hover-beam bg-white/10 hover:bg-accent text-white rounded-full px-6 border border-white/10 text-xs font-bold uppercase tracking-wider transition-colors">
                             <Link href={`/booking?service=${service.id}`}>Book This</Link>
                           </Button>
                         </AccordionContent>
@@ -190,25 +192,25 @@ export default function Services() {
 
           <div className="lg:col-span-4">
             <div className="sticky top-32 space-y-6">
-              <div className="bg-primary text-white p-10 rounded-3xl shadow-xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-bl-full"></div>
-                <h3 className="text-3xl font-bold mb-4 relative z-10">Ready for Service?</h3>
-                <p className="text-primary-foreground/80 mb-8 text-lg relative z-10">
+              <div className="glass-card-blue neon-border p-10 rounded-3xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-bl-full blur-xl"></div>
+                <h3 className="text-2xl font-heading font-bold text-white mb-4 relative z-10">Ready for Service?</h3>
+                <p className="text-muted-foreground mb-8 text-sm relative z-10 leading-relaxed">
                   Book your appointment online and skip the queue. We guarantee transparent pricing.
                 </p>
-                <Button size="lg" className="w-full bg-accent hover:bg-accent/90 hover-beam text-lg h-14 relative z-10 shadow-[0_0_20px_rgba(0,86,179,0.3)]" asChild>
+                <Button size="lg" className="w-full bg-accent hover:bg-accent/90 hover-beam text-sm font-bold uppercase tracking-wide h-14 relative z-10 pulse-glow" asChild>
                   <Link href="/booking">Book Service Now</Link>
                 </Button>
               </div>
 
-              <div className="bg-white border border-border p-8 rounded-3xl shadow-sm">
+              <div className="glass-card border border-white/10 p-8 rounded-3xl">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-accent/10 p-3 rounded-full">
-                    <Shield className="text-accent w-6 h-6" />
+                  <div className="bg-accent/10 border border-accent/20 p-3 rounded-2xl headlight-glow-sm">
+                    <Shield className="text-accent w-5 h-5" />
                   </div>
-                  <h4 className="text-xl font-bold text-primary">Certified Center</h4>
+                  <h4 className="text-lg font-heading font-bold text-white">Certified Center</h4>
                 </div>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   As an authorized workshop, all our repairs strictly comply with Maruti Suzuki factory standards.
                 </p>
               </div>

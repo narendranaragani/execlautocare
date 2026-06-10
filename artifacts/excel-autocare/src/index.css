@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -41,6 +41,7 @@
   --color-destructive-border: var(--destructive-border);
 
   --font-sans: var(--app-font-sans);
+  --font-heading: var(--app-font-heading);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -48,76 +49,51 @@
 }
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 213 68% 15%;
+  /* Primary dark automotive background: #07111f */
+  --background: 213 76% 8%;
+  --foreground: 0 0% 100%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 213 68% 15%;
-  --card-border: 210 40% 90%;
+  /* Card surface: #0d1b2a */
+  --card: 213 60% 11%;
+  --card-foreground: 0 0% 100%;
+  --card-border: 213 40% 20%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 213 68% 15%;
-  --popover-border: 210 40% 90%;
+  --popover: 213 60% 11%;
+  --popover-foreground: 0 0% 100%;
+  --popover-border: 213 40% 20%;
 
-  --primary: 213 68% 15%; /* #0c2340 */
+  /* Primary = deep dark bg used for sections */
+  --primary: 213 76% 8%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 40% 96%; /* #f1f5f9 */
-  --secondary-foreground: 213 68% 15%;
+  /* Secondary = slightly lighter dark: #0d1b2a */
+  --secondary: 213 60% 11%;
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  /* Muted text: #b8c5d1 */
+  --muted: 213 40% 15%;
+  --muted-foreground: 210 23% 77%;
 
-  --accent: 211 100% 35%; /* #0056b3 */
+  /* Accent: #00a3ff */
+  --accent: 204 100% 50%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 210 40% 90%;
-  --input: 210 40% 90%;
-  --ring: 211 100% 35%;
+  --border: 213 40% 20%;
+  --input: 213 40% 18%;
+  --ring: 204 100% 50%;
 
   --app-font-sans: 'Inter', sans-serif;
-  --radius: 0.375rem;
+  --app-font-heading: 'Montserrat', sans-serif;
+  --radius: 0.5rem;
 
-  --button-outline: rgba(0,0,0, .10);
-  --badge-outline: rgba(0,0,0, .05);
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
   --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
-}
-
-.dark {
-  --background: 213 68% 15%;
-  --foreground: 0 0% 100%;
-
-  --card: 213 68% 15%;
-  --card-foreground: 0 0% 100%;
-  --card-border: 213 40% 25%;
-
-  --popover: 213 68% 15%;
-  --popover-foreground: 0 0% 100%;
-  --popover-border: 213 40% 25%;
-
-  --primary: 0 0% 100%;
-  --primary-foreground: 213 68% 15%;
-
-  --secondary: 213 40% 25%;
-  --secondary-foreground: 0 0% 100%;
-
-  --muted: 213 40% 25%;
-  --muted-foreground: 210 40% 80%;
-
-  --accent: 211 100% 50%;
-  --accent-foreground: 0 0% 100%;
-
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 0 0% 100%;
-
-  --border: 213 40% 25%;
-  --input: 213 40% 25%;
-  --ring: 211 100% 50%;
+  --elevate-1: rgba(255,255,255, .03);
+  --elevate-2: rgba(255,255,255, .06);
 }
 
 @layer base {
@@ -125,79 +101,181 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply antialiased bg-background text-foreground;
+    font-family: var(--app-font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--app-font-heading);
   }
 }
 
-/* Animations */
+/* ─── Ticker ────────────────────────────────────────── */
 .animate-ticker {
-  animation: ticker 20s linear infinite;
+  animation: ticker 25s linear infinite;
 }
-
 @keyframes ticker {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
+/* ─── Headlight beam sweep on buttons ───────────────── */
 .hover-beam {
   position: relative;
   overflow: hidden;
 }
-
 .hover-beam::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  top: -20%;
+  left: -80%;
+  width: 60%;
+  height: 140%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255,255,255,0.35) 50%,
+    transparent 80%
+  );
   transform: skewX(-20deg);
-  transition: left 0.5s ease;
+  transition: left 0.55s ease;
+  pointer-events: none;
 }
-
 .hover-beam:hover::after {
-  left: 150%;
+  left: 130%;
 }
 
+/* ─── Service card lift with blue glow ──────────────── */
 .service-card-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+  will-change: transform;
 }
-
 .service-card-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgba(12, 35, 64, 0.1), 0 10px 10px -5px rgba(12, 35, 64, 0.04);
+  transform: translateY(-10px) perspective(600px) rotateX(2deg);
+  box-shadow:
+    0 28px 56px -8px rgba(0,163,255,0.25),
+    0 0 0 1px rgba(0,163,255,0.15),
+    0 0 40px -10px rgba(0,163,255,0.2);
 }
 
-/* Glassmorphism */
+/* ─── Glassmorphism ─────────────────────────────────── */
 .glass-card {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.glass-card-blue {
+  background: rgba(0,163,255,0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,163,255,0.2);
 }
 
-/* Blue glow for service card hover */
-.service-card-lift:hover {
-  transform: translateY(-8px) perspective(500px) rotateX(2deg);
-  box-shadow: 0 24px 48px -8px rgba(0,86,179,0.18), 0 0 0 1px rgba(0,86,179,0.1);
-}
-
-/* Gradient text utility */
+/* ─── Gradient text ─────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 60%, #00a3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-blue {
+  background: linear-gradient(135deg, #00a3ff 0%, #33bbff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Section reveal animation class for GSAP targets */
+/* ─── Headlight glow effect ─────────────────────────── */
+.headlight-glow {
+  filter: drop-shadow(0 0 20px rgba(0,163,255,0.8)) drop-shadow(0 0 40px rgba(0,163,255,0.4));
+}
+.headlight-glow-sm {
+  filter: drop-shadow(0 0 8px rgba(0,163,255,0.6)) drop-shadow(0 0 16px rgba(0,163,255,0.3));
+}
+
+/* ─── Wheel spin animation ──────────────────────────── */
+@keyframes wheel-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.wheel-spin {
+  animation: wheel-spin 3s linear infinite;
+  transform-origin: center;
+}
+.wheel-spin-slow {
+  animation: wheel-spin 6s linear infinite;
+  transform-origin: center;
+}
+
+/* ─── Speed lines ───────────────────────────────────── */
+@keyframes speed-line {
+  0%   { opacity: 0; transform: translateX(0); }
+  50%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateX(-60px); }
+}
+.speed-line {
+  animation: speed-line 0.8s ease-out infinite;
+}
+.speed-line:nth-child(2) { animation-delay: 0.15s; }
+.speed-line:nth-child(3) { animation-delay: 0.3s; }
+.speed-line:nth-child(4) { animation-delay: 0.45s; }
+
+/* ─── Float animation for hero badges ──────────────── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+.float-badge-1 { animation: float-y 4s ease-in-out infinite; }
+.float-badge-2 { animation: float-y 5s ease-in-out infinite; animation-delay: 1s; }
+.float-badge-3 { animation: float-y 4.5s ease-in-out infinite; animation-delay: 2s; }
+
+/* ─── Pulse glow for accent elements ────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,163,255,0.3); }
+  50%       { box-shadow: 0 0 40px rgba(0,163,255,0.6), 0 0 80px rgba(0,163,255,0.2); }
+}
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ─── GSAP targets ──────────────────────────────────── */
 .gsap-reveal {
   opacity: 0;
   transform: translateY(40px);
 }
 
-/* Shine animation for premium cards */
+/* ─── Section divider — speed lines ─────────────────── */
+.section-speed-divider {
+  position: relative;
+  overflow: hidden;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00a3ff, #33bbff, #00a3ff, transparent);
+  background-size: 200% 100%;
+  animation: shimmer-line 2s linear infinite;
+}
+@keyframes shimmer-line {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ─── Shine for cards ───────────────────────────────── */
 @keyframes shine {
   from { background-position: 200% center; }
-  to { background-position: -200% center; }
+  to   { background-position: -200% center; }
+}
+
+/* ─── Dashboard number tick ─────────────────────────── */
+@keyframes number-tick {
+  0%, 90%, 100% { transform: translateY(0); }
+  45%           { transform: translateY(-4px); }
+}
+.counter-tick {
+  display: inline-block;
+  animation: number-tick 0.1s ease;
+}
+
+/* ─── Neon border accent ────────────────────────────── */
+.neon-border {
+  border: 1px solid rgba(0,163,255,0.4);
+  box-shadow: 0 0 15px rgba(0,163,255,0.15), inset 0 0 15px rgba(0,163,255,0.05);
 }

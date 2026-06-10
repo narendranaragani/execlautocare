@@ -168,3 +168,36 @@
   transform: translateY(-8px);
   box-shadow: 0 20px 25px -5px rgba(12, 35, 64, 0.1), 0 10px 10px -5px rgba(12, 35, 64, 0.04);
 }
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Blue glow for service card hover */
+.service-card-lift:hover {
+  transform: translateY(-8px) perspective(500px) rotateX(2deg);
+  box-shadow: 0 24px 48px -8px rgba(0,86,179,0.18), 0 0 0 1px rgba(0,86,179,0.1);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section reveal animation class for GSAP targets */
+.gsap-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Shine animation for premium cards */
+@keyframes shine {
+  from { background-position: 200% center; }
+  to { background-position: -200% center; }
+}

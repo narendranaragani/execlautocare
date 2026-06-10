@@ -1,0 +1,408 @@
+BUILD A PREMIUM AUTOMOTIVE WEBSITE FOR EXCEL AUTOCARE
+
+REFERENCE WEBSITE:
+https://www.varunmaruti.com/
+
+IMPORTANT:
+Do NOT create a generic template website.
+Use the visual quality, premium layout structure, spacing system, professionalism, and animation smoothness similar to the reference website.
+The final website should feel like a modern automotive corporate website comparable to authorized Maruti Suzuki service center websites.
+
+TECH STACK:
+
+* Next.js 15 (App Router)
+* TypeScript
+* Tailwind CSS
+* Framer Motion
+* GSAP for advanced animations
+* Shadcn UI
+* Lucide Icons
+* SEO optimized architecture
+* Fully responsive mobile-first design
+
+DESIGN SYSTEM:
+
+Colors:
+
+* Primary Navy: #0c2340
+* Accent Blue: #0056b3
+* White: #ffffff
+* Light Silver: #f8fafc
+
+Typography:
+
+* Inter Font
+* Premium spacing system
+* Large automotive-style headings
+* Corporate service-center appearance
+
+VISUAL FEEL:
+
+* Modern automotive
+* Premium service workshop
+* Professional
+* Trustworthy
+* Mechanical precision
+* Smooth luxury interactions
+
+GLOBAL ANIMATIONS:
+
+1. PAGE TRANSITIONS
+   Implement premium route transitions.
+
+When changing pages:
+
+* Modern car silhouette moves across screen
+  OR
+* Speedometer needle animation
+  OR
+* Wireframe vehicle sweep transition
+
+Transition duration:
+500ms-800ms
+
+Must be smooth and hardware accelerated.
+
+2. HERO ANIMATIONS
+
+* Car image parallax movement
+* Floating accent elements
+* Animated counters
+* Fade-up content reveal
+* Staggered entrance animations
+
+3. SCROLL ANIMATIONS
+   Use GSAP ScrollTrigger.
+
+Sections should:
+
+* Fade in
+* Slide upward
+* Scale subtly
+* Reveal progressively
+
+4. SERVICE CARD INTERACTIONS
+   On hover:
+
+* Lift effect
+* Shadow expansion
+* Slight 3D rotation
+* Blue glow accent
+* Smooth transitions
+
+5. BUTTON EFFECTS
+   Primary CTA:
+   "Book Service Now"
+
+Hover effects:
+
+* Headlight sweep effect
+* Liquid fill effect
+* Shine animation
+
+HOME PAGE
+
+SECTION 1: HERO
+
+Full-screen premium hero.
+
+Content:
+"Your Trusted Maruti Suzuki Care Experts"
+
+Subheading:
+Premium Service | Genuine Parts | Expert Technicians
+
+CTA Buttons:
+
+* Book Service
+* Call Now
+
+Background:
+
+* High-quality workshop imagery
+* Modern vehicle visuals
+* Dark overlay
+
+Include:
+
+* Animated statistics
+* Trust indicators
+* Floating service badges
+
+SECTION 2: TRUST BAR
+
+Animated ticker:
+
+✓ Genuine Parts
+
+✓ Expert Mechanics
+
+✓ Transparent Pricing
+
+✓ Quick Turnaround
+
+✓ Advanced Diagnostics
+
+SECTION 3: ABOUT PREVIEW
+
+Split layout.
+
+Left:
+Workshop image.
+
+Right:
+Company story.
+
+Animated reveal.
+
+SECTION 4: SERVICES OVERVIEW
+
+Premium service cards:
+
+1. Body Repair
+2. Paint Jobs
+3. Mechanical Works
+4. Scheduled Maintenance
+5. Genuine Parts
+
+Cards should contain:
+
+* Icon
+* Short description
+* Learn More button
+
+SECTION 5: LIVE COUNTERS
+
+Animated numbers:
+
+Cars Serviced
+Happy Customers
+Years Experience
+Genuine Parts Installed
+
+Use count-up animation.
+
+SECTION 6: TESTIMONIALS
+
+Modern carousel.
+
+Glassmorphism cards.
+
+Smooth sliding interaction.
+
+SECTION 7: CTA BANNER
+
+Large premium section.
+
+"Book Your Service Today"
+
+Strong conversion design.
+
+ABOUT PAGE
+
+Create premium storytelling layout.
+
+Include:
+
+* Company introduction
+* Mission
+* Vision
+* Workshop facilities
+* Certifications
+* Quality standards
+
+Interactive timeline:
+
+* Company growth
+* Workshop expansion
+* Milestones
+
+Animated vertical timeline.
+
+SERVICES PAGE
+
+Create separate detailed sections.
+
+BODY REPAIR:
+
+* Chassis Realignment
+* Dent Removal
+* Panel Replacements
+* Accident Restoration
+
+PAINT SERVICES:
+
+* Full Body Paint
+* Thermal Baking Booth
+* Color Matching
+* Scratch Repair
+
+MECHANICAL SERVICES:
+
+* Engine Diagnostics
+* Transmission Services
+* Brake Repairs
+* Clutch Repairs
+* Suspension Tuning
+
+MAINTENANCE SERVICES:
+
+* Oil Change
+* Filters
+* Coolant
+* Battery Checks
+* Electrical Inspection
+* Wheel Alignment
+
+GENUINE PARTS:
+
+Highlight trust.
+
+Create premium comparison section:
+
+Genuine Parts vs Duplicate Parts
+
+Use visual comparison cards.
+
+SERVICE PAGE UX:
+
+* Accordion layouts
+* Expandable sections
+* Smooth animations
+* Book Service CTA inside each service
+
+BOOKING PAGE
+
+MULTI-STEP BOOKING FORM
+
+STEP 1:
+Vehicle Selection
+
+Models:
+
+* Swift
+* Baleno
+* Brezza
+* WagonR
+* Dzire
+* Ertiga
+* Fronx
+* Grand Vitara
+
+STEP 2:
+Service Selection
+
+Checkboxes:
+
+* Periodic Maintenance
+* Body Repair
+* Paint Work
+* Mechanical Diagnosis
+* Spare Parts
+* Other Repairs
+
+STEP 3:
+Date & Time Selection
+
+Interactive calendar.
+
+Morning/Afternoon slots.
+
+STEP 4:
+Customer Details
+
+Fields:
+
+* Name
+* Phone
+* Email
+* Notes
+
+STEP 5:
+Confirmation Screen
+
+Display booking summary.
+
+Generate downloadable calendar invite.
+
+CONTACT PAGE
+
+Include:
+
+* Workshop address
+* Working hours
+* Phone number
+* WhatsApp button
+* Email
+
+Google Maps integration.
+
+One-click navigation button.
+
+Floating contact options.
+
+HEADER
+
+Premium sticky navigation.
+
+Transparent initially.
+
+Becomes solid on scroll.
+
+Include:
+
+* Logo
+* Navigation
+* Call Button
+* Book Service CTA
+
+FOOTER
+
+Corporate automotive footer.
+
+Include:
+
+* Quick Links
+* Services
+* Contact Info
+* Social Links
+* Google Maps
+
+SEO REQUIREMENTS
+
+Implement:
+
+* AutoRepair Schema
+* LocalBusiness Schema
+* Open Graph
+* Twitter Cards
+* Dynamic Metadata
+
+PERFORMANCE REQUIREMENTS
+
+Target:
+
+* Lighthouse 95+
+* Load Time < 2 seconds
+
+Use:
+
+* SVG graphics
+* WebP images
+* Lazy loading
+* Code splitting
+
+FINAL EXPECTATION
+
+The final result must look like a premium automotive corporate website similar in quality to Varun Maruti, not a generic template.
+
+Focus heavily on:
+
+* Luxury automotive feel
+* Smooth GSAP animations
+* Professional spacing
+* High-end UI design
+* Premium booking experience
+* Strong trust-building sections
+* Modern car-themed transitions
+* Mobile responsiveness

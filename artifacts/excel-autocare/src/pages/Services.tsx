@@ -53,14 +53,14 @@ const FALLBACK_CATEGORIES = [
 export default function Services() {
   const containerRef = useRef(null);
   const { data: categoriesData } = useListServices({ query: { queryKey: getListServicesQueryKey() } });
-  
+
   const categories = categoriesData && categoriesData.length > 0 ? categoriesData : FALLBACK_CATEGORIES;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".gsap-service-card", 
+      gsap.fromTo(".gsap-service-card",
         { opacity: 0, y: 20 },
-        { 
+        {
           opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out",
           scrollTrigger: { trigger: containerRef.current, start: "top 80%", once: true }
         }
@@ -70,7 +70,7 @@ export default function Services() {
   }, [categories]);
 
   const getCategoryIcon = (index: number) => {
-    switch(index) {
+    switch (index) {
       case 0: return <Wrench size={16} />;
       case 1: return <Droplet size={16} />;
       case 2: return <Settings size={16} />;
@@ -101,7 +101,7 @@ export default function Services() {
             <h2 className="text-2xl text-primary font-semibold mb-3">Why Genuine Parts Matter</h2>
             <p className="text-muted-foreground text-sm">We refuse to compromise on your safety. Here's why we strictly use MGP.</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-card border border-border border-l-4 border-l-green-500 rounded-xl p-8 shadow-sm">
               <h3 className="text-lg text-primary font-semibold mb-4 flex items-center gap-2">
@@ -150,7 +150,7 @@ export default function Services() {
       <section className="py-24 bg-secondary border-b border-border">
         <div className="container mx-auto px-4" ref={containerRef}>
           <div className="grid lg:grid-cols-12 gap-10">
-            
+
             <div className="lg:col-span-8 space-y-6">
               {categories.map((category, index) => (
                 <div key={category.id} className="gsap-service-card bg-white border border-border rounded-xl overflow-hidden shadow-sm">
@@ -163,7 +163,7 @@ export default function Services() {
                       <p className="text-muted-foreground text-xs">{category.description}</p>
                     </div>
                   </div>
-                  
+
                   <div className="px-6 py-2">
                     <Accordion type="multiple" className="w-full">
                       {category.services?.map((service) => (
@@ -189,27 +189,59 @@ export default function Services() {
 
             <div className="lg:col-span-4">
               <div className="sticky top-24 space-y-6">
-                <div className="bg-primary p-8 rounded-xl text-white shadow-sm">
-                  <h3 className="text-xl font-semibold mb-3">Ready for Service?</h3>
-                  <p className="text-white/80 mb-6 text-sm leading-relaxed">
-                    Book your appointment online and skip the queue. We guarantee transparent pricing.
-                  </p>
-                  <Button size="default" className="w-full bg-white text-primary hover:bg-white/90 font-semibold shadow-sm" asChild>
-                    <Link href="/booking">Book Service Now</Link>
-                  </Button>
+
+                {/* CTA Card */}
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 via-indigo-700 to-violet-700 p-8 text-white shadow-2xl">
+                  <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
+
+                  <div className="relative z-10">
+                    <span className="inline-flex items-center rounded-full bg-amber-400/20 px-3 py-1 text-xs font-semibold text-amber-300 border border-amber-300/20">
+                      Premium Service
+                    </span>
+
+                    <h3 className="mt-4 text-2xl font-bold tracking-tight">
+                      Ready for Service?
+                    </h3>
+
+                    <p className="mt-3 text-sm leading-relaxed text-blue-100">
+                      Schedule your vehicle service online and avoid waiting time.
+                      Enjoy transparent pricing, genuine spare parts, and certified
+                      technicians.
+                    </p>
+
+                    <Button
+                      size="lg"
+                      className="mt-6 w-full rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-amber-500/30"
+                      asChild
+                    >
+                      <Link href="/booking">
+                        Book Service Now
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
 
-                <div className="bg-white border border-border p-6 rounded-xl shadow-sm">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-secondary p-2 rounded-full text-accent">
-                      <Shield size={16} />
+                {/* Certification Card */}
+                <div className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md">
+                      <Shield size={20} />
                     </div>
-                    <h4 className="text-base font-semibold text-primary">Certified Center</h4>
+
+                    <div>
+                      <h4 className="text-lg font-bold text-slate-900">
+                        Certified Service Center
+                      </h4>
+
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                        As an authorized workshop, every repair follows
+                        Maruti Suzuki factory standards, ensuring reliability,
+                        safety, and genuine parts for your vehicle.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    As an authorized workshop, all our repairs strictly comply with Maruti Suzuki factory standards.
-                  </p>
                 </div>
+
               </div>
             </div>
 

@@ -322,18 +322,126 @@ async function parseSuccessBody(
   }
 }
 
+const MOCK_SERVICES = [
+  {
+    id: 1,
+    name: "Car Body Works & Accident Repair",
+    description: "Precision structural and body repairs.",
+    icon: "Wrench",
+    services: [
+      { id: 101, name: "Chassis Realignment", description: "Laser-guided structural repairs to factory specs." },
+      { id: 102, name: "Dent Removal", description: "Paintless PDR + deep scratch extraction." },
+      { id: 103, name: "Panel Replacement", description: "Doors, bumpers, fenders, and side-panels." }
+    ]
+  },
+  {
+    id: 2,
+    name: "Premium Paint Jobs",
+    description: "Showroom finish paint and coatings.",
+    icon: "Droplet",
+    services: [
+      { id: 201, name: "Full-Body Overhaul", description: "Dust-free thermal baking booths." },
+      { id: 202, name: "Color Matching", description: "Computerized colorimetry, Maruti paint codes." },
+      { id: 203, name: "Scratch & Clear-Coat Repair", description: "Localized spot painting and blending." }
+    ]
+  },
+  {
+    id: 3,
+    name: "Mechanical Workshop",
+    description: "Advanced diagnostics and component repair.",
+    icon: "Settings",
+    services: [
+      { id: 301, name: "Engine Diagnostics", description: "OBD scanner and fault isolation." },
+      { id: 302, name: "Brake & Clutch Overhaul", description: "Pad upgrades, disc resurfacing, hydraulic bleeding." },
+      { id: 303, name: "Suspension Tuning", description: "Shock absorber replacement and alignment." }
+    ]
+  },
+  {
+    id: 4,
+    name: "Scheduled Periodic Maintenance",
+    description: "Keep your car running smoothly.",
+    icon: "Calendar",
+    services: [
+      { id: 401, name: "Fluid & Filter Package", description: "Oil, air/fuel filters, coolant, wipers." },
+      { id: 402, name: "Electrical Assessment", description: "Alternator, battery CCA check, fuse check." },
+      { id: 403, name: "Tyre & Wheel Care", description: "3D alignment, balancing, wear check." }
+    ]
+  },
+  {
+    id: 5,
+    name: "Genuine Spare Parts",
+    description: "100% OEM parts for durability and safety.",
+    icon: "Shield",
+    services: [
+      { id: 501, name: "Replacement Parts", description: "Air filters, spark plugs, gaskets, engine mounts." }
+    ]
+  }
+];
+
 export async function customFetch<T = unknown>(
   input: RequestInfo | URL,
   options: CustomFetchOptions = {},
 ): Promise<T> {
+  const url = resolveUrl(input);
+  const method = resolveMethod(input, options.method);
+
+  // Local Mock Mode Interceptor
+  const urlPath = url.split("?")[0];
+  if (urlPath.startsWith("/api/")) {
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    if (urlPath === "/api/healthz") {
+      return { status: "ok" } as T;
+    }
+
+    if (urlPath === "/api/stats") {
+      return {
+        totalCarsServiced: 15420,
+        yearsInOperation: 12,
+        certifiedTechnicians: 45,
+        customerSatisfaction: 98,
+      } as T;
+    }
+
+    if (urlPath === "/api/services") {
+      return MOCK_SERVICES as T;
+    }
+
+    if (urlPath === "/api/bookings/slots") {
+      const dateStr = new URL(url, "http://localhost").searchParams.get("date") || new Date().toISOString().split("T")[0];
+      return [
+        { id: `${dateStr}-1`, date: dateStr, time: "09:00 AM", period: "morning", available: true },
+        { id: `${dateStr}-2`, date: dateStr, time: "10:30 AM", period: "morning", available: true },
+        { id: `${dateStr}-3`, date: dateStr, time: "12:00 PM", period: "morning", available: false },
+        { id: `${dateStr}-4`, date: dateStr, time: "02:00 PM", period: "afternoon", available: true },
+        { id: `${dateStr}-5`, date: dateStr, time: "03:30 PM", period: "afternoon", available: true },
+        { id: `${dateStr}-6`, date: dateStr, time: "05:00 PM", period: "afternoon", available: true },
+      ] as T;
+    }
+
+    if (urlPath === "/api/bookings" && method === "POST") {
+      const bodyObj = typeof options.body === "string" ? JSON.parse(options.body) : {};
+      const bookingId = Math.floor(Math.random() * 90000) + 10000;
+      return {
+        id: bookingId,
+        customerName: bodyObj.customerName || "Customer",
+        phone: bodyObj.phone || "",
+        email: bodyObj.email || null,
+        carModel: bodyObj.carModel || "",
+        carYear: Number(bodyObj.carYear) || 2024,
+        fuelType: bodyObj.fuelType || "petrol",
+        serviceIds: bodyObj.serviceIds || [],
+        date: bodyObj.date || "",
+        slotId: bodyObj.slotId || "",
+        notes: bodyObj.notes || null,
+        status: "confirmed",
+        createdAt: new Date().toISOString(),
+      } as T;
+    }
+  }
+
   input = applyBaseUrl(input);
   const { responseType = "auto", headers: headersInit, ...init } = options;
-
-  const method = resolveMethod(input, init.method);
-
-  if (init.body != null && (method === "GET" || method === "HEAD")) {
-    throw new TypeError(`customFetch: ${method} requests cannot have a body.`);
-  }
 
   const headers = mergeHeaders(isRequest(input) ? input.headers : undefined, headersInit);
 

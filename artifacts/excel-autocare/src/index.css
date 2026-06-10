@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -61,8 +61,8 @@
   --popover-foreground: 215 30% 15%;
   --popover-border: 214 20% 90%;
 
-  /* Primary = dark navy for text and key elements */
-  --primary: 215 40% 18%;            /* #1a2e4a */
+  /* Primary = dark navy for text and key elements (#0c2340) */
+  --primary: 213 68% 15%;
   --primary-foreground: 0 0% 100%;
 
   /* Secondary = very light warm gray */
@@ -73,8 +73,8 @@
   --muted: 210 15% 94%;              /* #edf0f4 */
   --muted-foreground: 215 16% 47%;   /* #6B7C93 */
 
-  /* Accent = refined steel blue (not vibrant) */
-  --accent: 214 55% 38%;             /* #2d5491 */
+  /* Accent = Electric Maruti Blue (#0056b3) */
+  --accent: 211 100% 35%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 72% 51%;
@@ -82,10 +82,10 @@
 
   --border: 214 20% 88%;
   --input: 214 20% 91%;
-  --ring: 214 55% 38%;
+  --ring: 211 100% 35%;
 
-  --app-font-sans: 'DM Sans', 'Inter', sans-serif;
-  --app-font-heading: 'Playfair Display', Georgia, serif;
+  --app-font-sans: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
+  --app-font-heading: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
   --radius: 0.5rem;
 
   --button-outline: rgba(0,0,0,.08);

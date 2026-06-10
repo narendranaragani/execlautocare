@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format, addDays } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, ArrowLeft, CheckCircle, CheckCircle2 } from "lucide-react";
+import { CheckCircle, CheckCircle2 } from "lucide-react";
 
 import { useListServices, getListServicesQueryKey, useGetAvailableSlots, getGetAvailableSlotsQueryKey, useCreateBooking } from "@workspace/api-client-react";
 import { BookingInputFuelType } from "@workspace/api-client-react/src/generated/api.schemas";
@@ -119,25 +119,24 @@ export default function Booking() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-[#07111f] pt-36 pb-24 flex items-center justify-center px-4 font-sans">
+      <div className="min-h-screen bg-white pt-32 pb-24 flex items-center justify-center px-4 font-sans">
         <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="glass-card neon-border p-12 rounded-3xl text-center max-w-lg w-full relative overflow-hidden"
+          className="bg-card border border-border p-10 rounded-2xl text-center max-w-md w-full shadow-sm"
         >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-accent/20 blur-[60px] pointer-events-none"></div>
-          <div className="w-20 h-20 bg-accent/10 border border-accent/30 rounded-full flex items-center justify-center text-accent mx-auto mb-8 relative z-10 headlight-glow">
-            <CheckCircle className="w-10 h-10" />
+          <div className="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-accent mx-auto mb-6">
+            <CheckCircle size={32} />
           </div>
-          <h2 className="text-3xl font-heading font-bold text-white mb-4 relative z-10">Booking Confirmed</h2>
-          <p className="text-muted-foreground text-sm mb-8 leading-relaxed relative z-10">
+          <h2 className="text-2xl text-primary font-semibold mb-3">Booking Confirmed</h2>
+          <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
             Your service appointment has been successfully scheduled. We look forward to seeing you.
           </p>
-          <div className="bg-[#0d1b2a] border border-white/10 rounded-2xl p-6 mb-8 relative z-10">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Booking Reference</p>
-            <p className="text-3xl font-heading font-black text-accent tracking-widest">{bookingRef}</p>
+          <div className="bg-white border border-border rounded-xl p-5 mb-8">
+            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Booking Reference</p>
+            <p className="text-xl font-bold text-primary">{bookingRef}</p>
           </div>
-          <Button className="w-full bg-white text-[#07111f] hover:bg-white/90 h-14 text-sm font-bold uppercase tracking-wide rounded-xl relative z-10" asChild>
+          <Button className="w-full font-semibold" asChild>
             <Link href="/">Return to Home</Link>
           </Button>
         </motion.div>
@@ -148,34 +147,33 @@ export default function Booking() {
   const steps = ["Vehicle", "Services", "Time", "Details", "Summary"];
 
   return (
-    <div className="min-h-screen bg-[#07111f] font-sans pb-32">
+    <div className="min-h-screen bg-white font-sans pb-24">
       {/* Header */}
-      <section className="pt-36 pb-16 text-white relative">
-        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)", backgroundSize: "60px 60px" }}></div>
-        <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">
-          <h1 className="text-4xl md:text-5xl font-heading font-black mb-12 uppercase tracking-tight">Book a Service</h1>
+      <section className="pt-32 pb-12 bg-secondary border-b border-border">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <h1 className="text-3xl md:text-4xl text-primary mb-10">Book a Service</h1>
           
           {/* Step Indicator */}
-          <div className="flex items-center justify-between max-w-2xl mx-auto relative">
-            <div className="absolute left-0 top-5 -translate-y-1/2 w-full h-0.5 bg-white/10 -z-10 rounded-full"></div>
-            <div className="absolute left-0 top-5 -translate-y-1/2 h-0.5 bg-accent -z-10 rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(0,163,255,0.8)]" style={{ width: `${((step - 1) / 4) * 100}%` }}></div>
+          <div className="flex items-center justify-between max-w-xl mx-auto relative">
+            <div className="absolute left-0 top-4 -translate-y-1/2 w-full h-[2px] bg-border -z-10 rounded-full"></div>
+            <div className="absolute left-0 top-4 -translate-y-1/2 h-[2px] bg-accent -z-10 rounded-full transition-all duration-300" style={{ width: `${((step - 1) / 4) * 100}%` }}></div>
             
             {steps.map((label, i) => {
               const num = i + 1;
               const isActive = step === num;
               const isCompleted = step > num;
               return (
-                <div key={label} className="flex flex-col items-center gap-3">
+                <div key={label} className="flex flex-col items-center gap-2">
                   <div className={cn(
-                    "w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300",
-                    isActive ? "bg-accent text-white shadow-[0_0_15px_rgba(0,163,255,0.6)] border-2 border-accent" : 
-                    isCompleted ? "bg-white text-[#07111f] border-2 border-white" : "bg-[#0d1b2a] text-white/30 border-2 border-white/10"
+                    "w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-colors",
+                    isActive ? "bg-accent text-white" : 
+                    isCompleted ? "bg-white text-primary border-2 border-border" : "bg-white text-muted-foreground border-2 border-border"
                   )}>
-                    {isCompleted ? <CheckCircle className="w-5 h-5" /> : num}
+                    {isCompleted ? <CheckCircle size={14} /> : num}
                   </div>
                   <span className={cn(
-                    "text-[10px] md:text-xs font-bold uppercase tracking-widest hidden sm:block transition-colors",
-                    isActive || isCompleted ? "text-white" : "text-white/30"
+                    "text-[10px] font-semibold uppercase tracking-wider hidden sm:block",
+                    isActive ? "text-primary" : "text-muted-foreground"
                   )}>{label}</span>
                 </div>
               );
@@ -184,63 +182,63 @@ export default function Booking() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 max-w-3xl">
-        <div className="glass-card neon-border rounded-3xl overflow-hidden shadow-2xl">
-          <div className="p-6 md:p-12">
+      <div className="container mx-auto px-4 max-w-2xl mt-12">
+        <div className="bg-card border border-border rounded-2xl shadow-sm">
+          <div className="p-8">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 
                 <AnimatePresence mode="wait">
                   {step === 1 && (
-                    <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
-                      <div className="border-b border-white/10 pb-6">
-                        <h2 className="text-2xl font-heading font-bold text-white">Vehicle Details</h2>
-                        <p className="text-muted-foreground mt-2 text-sm">Tell us about your Maruti Suzuki.</p>
+                    <motion.div key="step1" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="space-y-6">
+                      <div>
+                        <h2 className="text-xl text-primary font-semibold mb-1">Vehicle Details</h2>
+                        <p className="text-muted-foreground text-sm">Tell us about your Maruti Suzuki.</p>
                       </div>
-                      <div className="grid md:grid-cols-2 gap-8">
+                      <div className="grid md:grid-cols-2 gap-6">
                         <FormField control={form.control} name="carModel" render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Car Model</FormLabel>
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Car Model</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-14 bg-[#0d1b2a] border-white/10 text-white focus:border-accent focus:ring-accent/20"><SelectValue placeholder="Select model" /></SelectTrigger>
+                                <SelectTrigger className="bg-white border-border text-primary focus:ring-accent"><SelectValue placeholder="Select model" /></SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-[#0d1b2a] border-white/10 text-white">
-                                {MODELS.map(m => <SelectItem key={m} value={m} className="focus:bg-white/10 focus:text-white">{m}</SelectItem>)}
+                              <SelectContent className="bg-white border-border">
+                                {MODELS.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
                               </SelectContent>
                             </Select>
-                            <FormMessage className="text-red-400" />
+                            <FormMessage />
                           </FormItem>
                         )} />
                         <FormField control={form.control} name="carYear" render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Manufacturing Year</FormLabel>
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Manufacturing Year</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value?.toString()}>
                               <FormControl>
-                                <SelectTrigger className="h-14 bg-[#0d1b2a] border-white/10 text-white focus:border-accent focus:ring-accent/20"><SelectValue placeholder="Select year" /></SelectTrigger>
+                                <SelectTrigger className="bg-white border-border text-primary focus:ring-accent"><SelectValue placeholder="Select year" /></SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-[#0d1b2a] border-white/10 text-white">
-                                {YEARS.map(y => <SelectItem key={y} value={y.toString()} className="focus:bg-white/10 focus:text-white">{y}</SelectItem>)}
+                              <SelectContent className="bg-white border-border">
+                                {YEARS.map(y => <SelectItem key={y} value={y.toString()}>{y}</SelectItem>)}
                               </SelectContent>
                             </Select>
-                            <FormMessage className="text-red-400" />
+                            <FormMessage />
                           </FormItem>
                         )} />
                         <FormField control={form.control} name="fuelType" render={({ field }) => (
                           <FormItem className="md:col-span-2">
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Fuel Type</FormLabel>
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Fuel Type</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-14 bg-[#0d1b2a] border-white/10 text-white focus:border-accent focus:ring-accent/20"><SelectValue placeholder="Select fuel type" /></SelectTrigger>
+                                <SelectTrigger className="bg-white border-border text-primary focus:ring-accent"><SelectValue placeholder="Select fuel type" /></SelectTrigger>
                               </FormControl>
-                              <SelectContent className="bg-[#0d1b2a] border-white/10 text-white">
-                                <SelectItem value="petrol" className="focus:bg-white/10 focus:text-white">Petrol</SelectItem>
-                                <SelectItem value="diesel" className="focus:bg-white/10 focus:text-white">Diesel</SelectItem>
-                                <SelectItem value="cng" className="focus:bg-white/10 focus:text-white">CNG</SelectItem>
-                                <SelectItem value="hybrid" className="focus:bg-white/10 focus:text-white">Hybrid</SelectItem>
+                              <SelectContent className="bg-white border-border">
+                                <SelectItem value="petrol">Petrol</SelectItem>
+                                <SelectItem value="diesel">Diesel</SelectItem>
+                                <SelectItem value="cng">CNG</SelectItem>
+                                <SelectItem value="hybrid">Hybrid</SelectItem>
                               </SelectContent>
                             </Select>
-                            <FormMessage className="text-red-400" />
+                            <FormMessage />
                           </FormItem>
                         )} />
                       </div>
@@ -248,36 +246,36 @@ export default function Booking() {
                   )}
 
                   {step === 2 && (
-                    <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
-                      <div className="border-b border-white/10 pb-6">
-                        <h2 className="text-2xl font-heading font-bold text-white">Select Services</h2>
-                        <p className="text-muted-foreground mt-2 text-sm">Choose what your car needs today.</p>
+                    <motion.div key="step2" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="space-y-6">
+                      <div>
+                        <h2 className="text-xl text-primary font-semibold mb-1">Select Services</h2>
+                        <p className="text-muted-foreground text-sm">Choose what your car needs today.</p>
                       </div>
                       <FormField control={form.control} name="serviceIds" render={() => (
                         <FormItem>
-                          <div className="space-y-8">
+                          <div className="space-y-6">
                             {categories?.map((cat) => (
-                              <div key={cat.id} className="space-y-4">
-                                <h3 className="font-heading font-bold text-sm tracking-wider uppercase text-white bg-white/5 py-3 px-5 rounded-lg border border-white/10">{cat.name}</h3>
-                                <div className="grid gap-3">
+                              <div key={cat.id} className="space-y-3">
+                                <h3 className="font-semibold text-sm tracking-wide text-primary bg-secondary py-2 px-3 rounded-md">{cat.name}</h3>
+                                <div className="grid gap-2">
                                   {cat.services?.map(srv => (
                                     <FormField key={srv.id} control={form.control} name="serviceIds" render={({ field }) => {
                                       const isSelected = field.value?.includes(srv.id);
                                       return (
                                         <FormItem className={cn(
-                                          "flex flex-row items-start space-x-4 space-y-0 p-5 border rounded-2xl cursor-pointer transition-all",
-                                          isSelected ? "border-accent bg-accent/5 shadow-[0_0_15px_rgba(0,163,255,0.1)]" : "border-white/10 bg-[#0d1b2a] hover:border-white/30"
+                                          "flex flex-row items-start space-x-3 space-y-0 p-4 border rounded-xl cursor-pointer transition-colors",
+                                          isSelected ? "border-accent bg-accent/5" : "border-border bg-white hover:border-border/80"
                                         )}>
                                           <FormControl>
                                             <Checkbox
-                                              className={cn("mt-1 w-5 h-5 rounded border-white/30", isSelected && "border-accent bg-accent text-white")}
+                                              className={cn("mt-0.5 w-4 h-4 rounded border-border", isSelected && "border-accent bg-accent text-white")}
                                               checked={isSelected}
                                               onCheckedChange={(c) => c ? field.onChange([...field.value, srv.id]) : field.onChange(field.value?.filter((v) => v !== srv.id))}
                                             />
                                           </FormControl>
-                                          <div className="space-y-1.5 flex-1">
-                                            <FormLabel className={cn("font-bold text-base cursor-pointer block transition-colors", isSelected ? "text-accent" : "text-white")}>{srv.name}</FormLabel>
-                                            <p className="text-sm text-muted-foreground">{srv.description}</p>
+                                          <div className="space-y-1 flex-1">
+                                            <FormLabel className={cn("font-medium text-sm cursor-pointer block", isSelected ? "text-primary" : "text-primary")}>{srv.name}</FormLabel>
+                                            <p className="text-xs text-muted-foreground">{srv.description}</p>
                                           </div>
                                         </FormItem>
                                       );
@@ -287,61 +285,59 @@ export default function Booking() {
                               </div>
                             ))}
                           </div>
-                          <FormMessage className="mt-4 text-red-400" />
+                          <FormMessage />
                         </FormItem>
                       )} />
                     </motion.div>
                   )}
 
                   {step === 3 && (
-                    <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
-                      <div className="border-b border-white/10 pb-6">
-                        <h2 className="text-2xl font-heading font-bold text-white">Date & Time</h2>
-                        <p className="text-muted-foreground mt-2 text-sm">When would you like to bring it in?</p>
+                    <motion.div key="step3" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="space-y-6">
+                      <div>
+                        <h2 className="text-xl text-primary font-semibold mb-1">Date & Time</h2>
+                        <p className="text-muted-foreground text-sm">When would you like to bring it in?</p>
                       </div>
-                      <div className="grid md:grid-cols-2 gap-10">
+                      <div className="grid md:grid-cols-2 gap-8">
                         <FormField control={form.control} name="date" render={({ field }) => (
                           <FormItem className="flex flex-col">
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Preferred Date</FormLabel>
-                            <div className="border border-white/10 rounded-2xl p-4 bg-[#0d1b2a] self-start shadow-inner">
-                              {/* Dark Calendar styling overridden via className and tailwind in components/ui if needed, using dark mode basics */}
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Preferred Date</FormLabel>
+                            <div className="border border-border rounded-xl p-3 bg-white self-start shadow-sm">
                               <Calendar
                                 mode="single"
                                 selected={field.value}
                                 onSelect={(date) => { field.onChange(date); form.setValue("slotId", ""); }}
                                 disabled={(date) => date < new Date() || date > addDays(new Date(), 14)}
                                 initialFocus
-                                className="text-white dark"
                               />
                             </div>
-                            <FormMessage className="text-red-400" />
+                            <FormMessage />
                           </FormItem>
                         )} />
 
                         <FormField control={form.control} name="slotId" render={({ field }) => (
                           <FormItem className="flex flex-col">
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Available Time Slots</FormLabel>
-                            <div className="space-y-4">
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Available Time Slots</FormLabel>
+                            <div className="space-y-3">
                               {!formattedDate ? (
-                                <div className="text-muted-foreground text-sm p-8 border border-white/10 rounded-2xl border-dashed bg-[#0d1b2a] text-center">
+                                <div className="text-muted-foreground text-sm p-6 border border-border rounded-xl border-dashed bg-secondary text-center">
                                   Please select a date first
                                 </div>
                               ) : isSlotsLoading ? (
-                                <div className="text-accent text-sm font-bold uppercase tracking-widest p-8 text-center animate-pulse">Loading slots...</div>
+                                <div className="text-accent text-sm font-semibold p-6 text-center animate-pulse">Loading slots...</div>
                               ) : slots?.length === 0 ? (
-                                <div className="text-muted-foreground text-sm p-8 border border-white/10 rounded-2xl border-dashed bg-[#0d1b2a] text-center">
+                                <div className="text-muted-foreground text-sm p-6 border border-border rounded-xl border-dashed bg-secondary text-center">
                                   No slots available. Try another day.
                                 </div>
                               ) : (
-                                <div className="grid grid-cols-2 gap-3">
+                                <div className="grid grid-cols-2 gap-2">
                                   {slots?.map(slot => (
                                     <div
                                       key={slot.id}
                                       onClick={() => slot.available && field.onChange(slot.id)}
                                       className={cn(
-                                        "p-4 rounded-xl border text-center transition-all cursor-pointer font-bold text-sm",
-                                        !slot.available ? "opacity-30 bg-[#0d1b2a] border-white/5 cursor-not-allowed text-white" :
-                                        field.value === slot.id ? "bg-accent text-white border-accent shadow-[0_0_15px_rgba(0,163,255,0.4)]" : "hover:border-accent/50 hover:bg-white/5 border-white/10 text-white"
+                                        "p-3 rounded-lg border text-center transition-colors cursor-pointer font-medium text-xs",
+                                        !slot.available ? "opacity-40 bg-secondary border-border cursor-not-allowed text-primary" :
+                                        field.value === slot.id ? "bg-accent text-white border-accent" : "hover:bg-secondary bg-white border-border text-primary"
                                       )}
                                     >
                                       {slot.time}
@@ -350,7 +346,7 @@ export default function Booking() {
                                 </div>
                               )}
                             </div>
-                            <FormMessage className="text-red-400" />
+                            <FormMessage />
                           </FormItem>
                         )} />
                       </div>
@@ -358,40 +354,40 @@ export default function Booking() {
                   )}
 
                   {step === 4 && (
-                    <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
-                      <div className="border-b border-white/10 pb-6">
-                        <h2 className="text-2xl font-heading font-bold text-white">Contact Details</h2>
-                        <p className="text-muted-foreground mt-2 text-sm">How can we reach you?</p>
+                    <motion.div key="step4" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="space-y-6">
+                      <div>
+                        <h2 className="text-xl text-primary font-semibold mb-1">Contact Details</h2>
+                        <p className="text-muted-foreground text-sm">How can we reach you?</p>
                       </div>
-                      <div className="grid md:grid-cols-2 gap-8">
+                      <div className="grid md:grid-cols-2 gap-6">
                         <FormField control={form.control} name="customerName" render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Full Name</FormLabel>
-                            <FormControl><Input className="h-14 bg-[#0d1b2a] border-white/10 text-white focus-visible:ring-accent" placeholder="John Doe" {...field} /></FormControl>
-                            <FormMessage className="text-red-400" />
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Full Name</FormLabel>
+                            <FormControl><Input className="bg-white border-border text-primary focus-visible:ring-accent" placeholder="John Doe" {...field} /></FormControl>
+                            <FormMessage />
                           </FormItem>
                         )} />
                         <FormField control={form.control} name="phone" render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Phone Number</FormLabel>
-                            <FormControl><Input className="h-14 bg-[#0d1b2a] border-white/10 text-white focus-visible:ring-accent" placeholder="9876543210" {...field} /></FormControl>
-                            <FormMessage className="text-red-400" />
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Phone Number</FormLabel>
+                            <FormControl><Input className="bg-white border-border text-primary focus-visible:ring-accent" placeholder="9876543210" {...field} /></FormControl>
+                            <FormMessage />
                           </FormItem>
                         )} />
                         <FormField control={form.control} name="email" render={({ field }) => (
                           <FormItem className="md:col-span-2">
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Email Address (Optional)</FormLabel>
-                            <FormControl><Input className="h-14 bg-[#0d1b2a] border-white/10 text-white focus-visible:ring-accent" type="email" placeholder="john@example.com" {...field} /></FormControl>
-                            <FormMessage className="text-red-400" />
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email Address (Optional)</FormLabel>
+                            <FormControl><Input className="bg-white border-border text-primary focus-visible:ring-accent" type="email" placeholder="john@example.com" {...field} /></FormControl>
+                            <FormMessage />
                           </FormItem>
                         )} />
                         <FormField control={form.control} name="notes" render={({ field }) => (
                           <FormItem className="md:col-span-2">
-                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-300">Additional Notes (Optional)</FormLabel>
+                            <FormLabel className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Additional Notes (Optional)</FormLabel>
                             <FormControl>
-                              <Textarea placeholder="Any specific issues?" className="resize-none min-h-[120px] bg-[#0d1b2a] border-white/10 text-white focus-visible:ring-accent" {...field} />
+                              <Textarea placeholder="Any specific issues?" className="resize-none min-h-[100px] bg-white border-border text-primary focus-visible:ring-accent" {...field} />
                             </FormControl>
-                            <FormMessage className="text-red-400" />
+                            <FormMessage />
                           </FormItem>
                         )} />
                       </div>
@@ -399,37 +395,33 @@ export default function Booking() {
                   )}
 
                   {step === 5 && (
-                    <motion.div key="step5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
-                      <div className="border-b border-white/10 pb-6">
-                        <h2 className="text-2xl font-heading font-bold text-white">Booking Summary</h2>
-                        <p className="text-muted-foreground mt-2 text-sm">Please review your details before confirming.</p>
+                    <motion.div key="step5" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }} className="space-y-6">
+                      <div>
+                        <h2 className="text-xl text-primary font-semibold mb-1">Confirm Booking</h2>
+                        <p className="text-muted-foreground text-sm">Please review your details.</p>
                       </div>
-                      
-                      <div className="bg-[#0d1b2a] rounded-2xl p-8 border border-white/10 space-y-8">
-                        <div className="grid sm:grid-cols-3 gap-6">
+                      <div className="bg-secondary rounded-xl p-6 space-y-6 border border-border">
+                        <div className="grid sm:grid-cols-2 gap-4">
                           <div>
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Vehicle</p>
-                            <p className="text-base font-bold text-white">{form.getValues("carModel")} ({form.getValues("carYear")})</p>
-                            <p className="text-muted-foreground text-sm capitalize">{form.getValues("fuelType")}</p>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Vehicle</p>
+                            <p className="font-medium text-primary text-sm">{form.getValues("carYear")} {form.getValues("carModel")} ({form.getValues("fuelType")})</p>
                           </div>
                           <div>
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Date & Time</p>
-                            <p className="text-base font-bold text-white">{formattedDate}</p>
-                            <p className="text-muted-foreground text-sm">{getSelectedSlotTime()}</p>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Date & Time</p>
+                            <p className="font-medium text-primary text-sm">{formattedDate ? format(form.getValues("date"), "PP") : ""} at {getSelectedSlotTime()}</p>
                           </div>
                           <div>
-                            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Customer</p>
-                            <p className="text-base font-bold text-white">{form.getValues("customerName")}</p>
-                            <p className="text-muted-foreground text-sm">{form.getValues("phone")}</p>
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Contact</p>
+                            <p className="font-medium text-primary text-sm">{form.getValues("customerName")}<br/>{form.getValues("phone")}</p>
                           </div>
                         </div>
-
-                        <div className="pt-6 border-t border-white/10">
-                          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Selected Services</p>
-                          <ul className="space-y-3">
+                        <div className="pt-4 border-t border-border">
+                          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Selected Services</p>
+                          <ul className="space-y-1.5">
                             {getSelectedServiceNames().map((name, i) => (
-                              <li key={i} className="flex items-center gap-3 text-white font-medium text-sm">
-                                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" /> {name}
+                              <li key={i} className="flex items-start gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                                <span className="text-sm font-medium text-primary">{name}</span>
                               </li>
                             ))}
                           </ul>
@@ -439,21 +431,25 @@ export default function Booking() {
                   )}
                 </AnimatePresence>
 
-                <div className="flex justify-between pt-8 border-t border-white/10 mt-12">
-                  <Button type="button" variant="outline" size="lg" onClick={prevStep} disabled={step === 1 || createBooking.isPending} className="h-14 px-8 text-sm font-bold uppercase tracking-wider rounded-xl border-white/20 text-white hover:bg-white/10 hover:text-white bg-transparent">
-                    <ArrowLeft className="w-4 h-4 mr-2" /> Back
-                  </Button>
-                  
-                  {step < 5 ? (
-                     <Button type="button" size="lg" onClick={nextStep} className="bg-white text-[#07111f] hover:bg-white/90 h-14 px-10 text-sm font-bold uppercase tracking-wider rounded-xl">
-                      Next Step <ChevronRight className="w-4 h-4 ml-2" />
+                <div className="flex items-center justify-between pt-6 border-t border-border mt-8">
+                  {step > 1 ? (
+                    <Button type="button" variant="outline" onClick={prevStep} className="border-border text-primary hover:bg-secondary">
+                      Back
                     </Button>
                   ) : (
-                    <Button type="submit" size="lg" disabled={createBooking.isPending} className="hover-beam bg-accent pulse-glow hover:bg-accent/90 text-white h-14 px-10 text-sm font-bold uppercase tracking-wider rounded-xl shadow-[0_0_20px_rgba(0,163,255,0.4)]">
+                    <div></div>
+                  )}
+                  {step < 5 ? (
+                    <Button type="button" onClick={nextStep} className="bg-primary text-white hover:bg-primary/90 font-semibold">
+                      Continue
+                    </Button>
+                  ) : (
+                    <Button type="submit" disabled={createBooking.isPending} className="hover-beam bg-accent text-white hover:bg-accent/90 font-semibold">
                       {createBooking.isPending ? "Confirming..." : "Confirm Booking"}
                     </Button>
                   )}
                 </div>
+
               </form>
             </Form>
           </div>

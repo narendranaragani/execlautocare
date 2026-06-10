@@ -3,13 +3,19 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Excel Autocare API specification
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: bookings
+    description: Service booking operations
+  - name: services
+    description: Service catalog operations
+  - name: stats
+    description: Workshop statistics
 paths:
   /healthz:
     get:
@@ -24,6 +30,88 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /services:
+    get:
+      operationId: listServices
+      tags: [services]
+      summary: List all service categories and sub-services
+      responses:
+        "200":
+          description: Service catalog
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ServiceCategory"
+
+  /bookings/slots:
+    get:
+      operationId: getAvailableSlots
+      tags: [bookings]
+      summary: Get available time slots for a date
+      parameters:
+        - in: query
+          name: date
+          required: true
+          schema:
+            type: string
+          description: Date in YYYY-MM-DD format
+      responses:
+        "200":
+          description: Available slots
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TimeSlot"
+
+  /bookings:
+    post:
+      operationId: createBooking
+      tags: [bookings]
+      summary: Submit a new service booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingInput"
+      responses:
+        "201":
+          description: Booking confirmed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Booking"
+        "400":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Slot unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /stats:
+    get:
+      operationId: getStats
+      tags: [stats]
+      summary: Get workshop statistics
+      responses:
+        "200":
+          description: Workshop stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkshopStats"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +122,133 @@ components:
       required:
         - status
 
+    ServiceCategory:
+      type: object
+      required: [id, name, icon, description, services]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        icon:
+          type: string
+        description:
+          type: string
+        services:
+          type: array
+          items:
+            $ref: "#/components/schemas/Service"
+
+    Service:
+      type: object
+      required: [id, name, description]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        categoryId:
+          type: integer
+
+    TimeSlot:
+      type: object
+      required: [id, date, time, period, available]
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+        time:
+          type: string
+        period:
+          type: string
+          enum: [morning, afternoon]
+        available:
+          type: boolean
+
+    BookingInput:
+      type: object
+      required: [customerName, phone, carModel, carYear, fuelType, serviceIds, date, slotId]
+      properties:
+        customerName:
+          type: string
+          minLength: 2
+        phone:
+          type: string
+          minLength: 10
+        email:
+          type: ["string", "null"]
+        carModel:
+          type: string
+        carYear:
+          type: integer
+        fuelType:
+          type: string
+          enum: [petrol, diesel, cng, hybrid]
+        serviceIds:
+          type: array
+          items:
+            type: integer
+          minItems: 1
+        date:
+          type: string
+        slotId:
+          type: string
+        notes:
+          type: ["string", "null"]
+
+    Booking:
+      type: object
+      required: [id, customerName, phone, carModel, carYear, fuelType, serviceIds, date, slotId, status, createdAt]
+      properties:
+        id:
+          type: integer
+        customerName:
+          type: string
+        phone:
+          type: string
+        email:
+          type: ["string", "null"]
+        carModel:
+          type: string
+        carYear:
+          type: integer
+        fuelType:
+          type: string
+        serviceIds:
+          type: array
+          items:
+            type: integer
+        date:
+          type: string
+        slotId:
+          type: string
+        notes:
+          type: ["string", "null"]
+        status:
+          type: string
+          enum: [confirmed, pending, cancelled]
+        createdAt:
+          type: string
+
+    WorkshopStats:
+      type: object
+      required: [totalCarsServiced, yearsInOperation, certifiedTechnicians, customerSatisfaction]
+      properties:
+        totalCarsServiced:
+          type: integer
+        yearsInOperation:
+          type: integer
+        certifiedTechnicians:
+          type: integer
+        customerSatisfaction:
+          type: number
+
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string

@@ -35,73 +35,152 @@ export function HeroTicker() {
 }
 
 export function Hero() {
+  const slides = [
+    {
+      id: 1,
+      image: "https://i.pinimg.com/1200x/9d/83/f4/9d83f48752e4b71dd3052f2dc4bb5b5e.jpg",
+      title: "Dealer-Grade Diagnostics",
+      subtitle: "Precision matters."
+    },
+    {
+      id: 2,
+      image: "https://i.pinimg.com/1200x/09/1d/c1/091dc145ce908fd2db512e0d0ceb1600.jpg",
+      title: "Professional Mechanics",
+      subtitle: "Expertise you can trust."
+    },
+    {
+      id: 3,
+      image: "https://i.pinimg.com/736x/97/84/05/978405d431520c7d24c27ce456170374.jpg",
+      title: "Showroom-Quality Paint",
+      subtitle: "Flawless finish every time."
+    },
+    {
+      id: 4,
+      image: "https://i.pinimg.com/736x/ab/f0/17/abf01783ff63ff5840863ce8eee57ddf.jpg",
+      title: "Genuine Spare Parts",
+      subtitle: "Uncompromised durability."
+    },
+    {
+      id: 5,
+      image: "https://i.pinimg.com/1200x/c4/9f/3c/c49f3c88d40de3ea57cb7a101442453a.jpg",
+      title: "Premium Service",
+      subtitle: "The care your car deserves."
+    }
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden pt-20">
-      <img
-        src="https://i.pinimg.com/1200x/7c/29/20/7c29202fbe5b8dfd320a1a553a9571f1.jpg"
-        alt="car"
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        style={{ objectPosition: "center 60%" }}
-      />
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden bg-[#0c2340]">
+      {/* Background Carousel */}
+      <AnimatePresence mode="popLayout">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0 z-0"
+        >
+          <img
+            src={slides[currentSlide].image}
+            alt="Automotive Service"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="max-w-xl ml-6 md:ml-10 lg:ml-16">
-          <span className="text-white uppercase tracking-widest text-xs font-medium mb-4 block">
-            Official Maruti Suzuki Authorized Workshop
-          </span>
+      {/* Dark Overlay with Navy Blue / Black Gradient */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0c2340]/95 via-[#0c2340]/80 to-black/60" />
 
-          <h1 className="text-white font-bold mb-5 leading-tight">
-            Your Trusted
-            <br />
-            <span className="italic text-blue-200">Maruti Suzuki</span>
-            <br />
-            Care Experts
-          </h1>
+      {/* Subtle Headlight Glow Effects */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] z-10 pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-[100px] z-10 pointer-events-none" />
 
-          <p className="text-white mb-8 leading-relaxed text-sm max-w-sm">
-            Dealer-grade diagnostics, genuine spare parts, and showroom-quality
-            paint jobs — with the warmth of a neighborhood workshop.
-          </p>
+      {/* Content */}
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 mt-16 pointer-events-none">
+        <div className="max-w-2xl ml-0 md:ml-8 lg:ml-12 pointer-events-auto">
+          <div>
+            <span className="inline-block px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-[#00e5ff] uppercase tracking-[0.2em] text-xs font-bold shadow-lg">
+              Official Maruti Suzuki Authorized Workshop
+            </span>
 
-          <div className="flex gap-3 flex-wrap">
-            <Button
-              size="default"
-              asChild
-              className="hover-beam bg-white text-primary hover:bg-white/90 shadow-lg font-semibold"
-            >
-              <Link href="/booking">Book a Service</Link>
-            </Button>
+            <h1 className="text-white font-serif font-black mb-6 leading-[1.1] text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight drop-shadow-2xl">
+              Your Trusted
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">Maruti Suzuki</span>
+              <br />
+              Care Experts
+            </h1>
 
-            <Button
-              size="default"
-              variant="outline"
-              asChild
-              className="border-white text-white hover:bg-white/10 backdrop-blur-sm"
-            >
-              <a href="tel:+919876543210">Call Now</a>
-            </Button>
+            <p className="text-white/80 mb-10 leading-relaxed text-base md:text-lg max-w-lg font-medium drop-shadow-md border-l-2 border-[#00e5ff] pl-4 transition-all duration-300">
+              {slides[currentSlide].title} — {slides[currentSlide].subtitle}
+            </p>
+
+            <div className="flex gap-4 flex-wrap items-center">
+              <Button
+                size="lg"
+                asChild
+                className="hover-beam bg-[#00e5ff] text-[#0c2340] hover:bg-[#00b8cc] font-black uppercase tracking-widest rounded-none px-8 h-14 shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all duration-300"
+              >
+                <Link href="/booking">Book Service Now</Link>
+              </Button>
+
+              <div className="flex items-center gap-4 ml-4 hidden sm:flex">
+                <div className="flex -space-x-3">
+                  <img src="https://i.pravatar.cc/100?img=11" className="w-10 h-10 rounded-full border-2 border-[#0c2340]" alt="Customer" />
+                  <img src="https://i.pravatar.cc/100?img=32" className="w-10 h-10 rounded-full border-2 border-[#0c2340]" alt="Customer" />
+                  <img src="https://i.pravatar.cc/100?img=15" className="w-10 h-10 rounded-full border-2 border-[#0c2340]" alt="Customer" />
+                </div>
+                <div className="text-xs text-white/80 font-medium">
+                  <span className="text-[#00e5ff] font-bold block text-sm">4.9/5</span>
+                  from 2,500+ reviews
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute right-8 top-1/3 hidden lg:flex flex-col gap-3 z-10">
-        <div className="float-badge-1 glass-card rounded-full px-4 py-2 flex items-center gap-2 text-sm text-primary font-medium shadow-sm">
-          <Shield size={14} className="text-accent" />
-          Genuine Parts
-        </div>
+      {/* Navigation Controls */}
+      <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-30 hidden lg:flex">
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+          className="w-12 h-12 rounded-full border border-white/20 bg-black/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+          className="w-12 h-12 rounded-full border border-white/20 bg-black/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
 
-        <div className="float-badge-2 glass-card rounded-full px-4 py-2 flex items-center gap-2 text-sm text-primary font-medium shadow-sm">
-          <Settings size={14} className="text-accent" />
-          OBD Diagnostics
+      {/* Slide Indicators */}
+      <div className="absolute bottom-10 left-4 md:left-12 lg:left-20 flex items-center gap-3 z-30">
+        <div className="w-5 h-8 border border-white/30 rounded-full flex items-center justify-center mr-4 hidden sm:flex">
+          <div className="w-1 h-2 bg-white rounded-full animate-bounce"></div>
         </div>
-
-        <div className="float-badge-3 glass-card rounded-full px-4 py-2 flex items-center gap-2 text-sm text-primary font-medium shadow-sm">
-          <Star
-            size={14}
-            fill="currentColor"
-            className="text-yellow-500"
-          />
-          12+ Years
+        <div className="flex gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={cn(
+                "h-1.5 transition-all duration-300 rounded-full",
+                currentSlide === i ? "w-8 bg-[#00e5ff]" : "w-2 bg-white/30 hover:bg-white/50"
+              )}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -223,9 +302,9 @@ export function ServicesOverview() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(".gsap-reveal-service",
-        { opacity: 0, y: 20 },
+        { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out",
+          opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power3.out",
           scrollTrigger: { trigger: containerRef.current, start: "top 80%", once: true }
         }
       );
@@ -234,63 +313,99 @@ export function ServicesOverview() {
   }, []);
 
   const services = [
-    { title: "Body Repair", icon: <Wrench size={32} className="stroke-[1.25]" />, desc: "Laser-guided chassis alignment and dent removal." },
-    { title: "Paint Services", icon: <Droplet size={32} className="stroke-[1.25]" />, desc: "Computerized color matching and clear-coat repair." },
-    { title: "Mechanical", icon: <Settings size={32} className="stroke-[1.25]" />, desc: "Advanced engine diagnostics and component repair." },
-    { title: "Maintenance", icon: <Calendar size={32} className="stroke-[1.25]" />, desc: "Comprehensive fluid, filter, and multi-point checks." },
-    { title: "Genuine Parts", icon: <Shield size={32} className="stroke-[1.25]" />, desc: "100% OEM parts for durability and factory safety." },
+    {
+      title: "Body Repair",
+      icon: <Wrench size={18} />,
+      desc: "Laser-guided chassis alignment and dent removal.",
+      image: "https://i.pinimg.com/736x/12/60/f7/1260f78552a8126f246d25ae1751385a.jpg",
+    },
+    {
+      title: "Paint Services",
+      icon: <Droplet size={18} />,
+      desc: "Computerized color matching and clear-coat repair.",
+      image: "https://i.pinimg.com/736x/93/f1/77/93f177a3f91806d6631e16b2f64150ff.jpg",
+    },
+    {
+      title: "Mechanical",
+      icon: <Settings size={18} />,
+      desc: "Advanced engine diagnostics and repair.",
+      image: "https://i.pinimg.com/736x/27/a0/b4/27a0b4ccdf8fd4986b9154dad244a8f0.jpg",
+    },
+    {
+      title: "Maintenance",
+      icon: <Calendar size={18} />,
+      desc: "Comprehensive fluid, filter, and multi-point checks.",
+      image: "https://i.pinimg.com/1200x/50/7c/aa/507caac367c79e2a4ceb80d3459c5060.jpg",
+    },
+    {
+      title: "Genuine Parts",
+      icon: <Shield size={18} />,
+      desc: "100% OEM parts for durability and factory safety.",
+      image: "https://i.pinimg.com/1200x/04/e5/10/04e5103abfbf7b25b3904fe6a36082ec.jpg",
+    },
   ];
 
   return (
-    <section ref={containerRef} className="py-24 bg-[#f8fafc] border-b border-border">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-muted-foreground uppercase tracking-widest text-xs font-semibold mb-3 block">Premium Services</span>
-          <h2 className="text-[#0c2340] text-3xl font-bold tracking-tight uppercase">
-            Our Services
-          </h2>
-          <div className="flex flex-col items-center gap-1 mt-3">
-            <div className="w-16 h-[2.5px] bg-[#0056b3] rounded-full" />
-            <div className="w-10 h-[2px] bg-[#e63946] rounded-full" />
+    <section ref={containerRef} className="py-16 md:py-20 bg-[#f8fafc] border-b border-neutral-200">
+      <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
+        <div className="mb-10 text-center md:text-left md:flex md:justify-between md:items-end">
+          <div className="max-w-2xl">
+            <span className="text-[#0056b3] uppercase tracking-wider text-xs font-bold mb-2 block">Premium Services</span>
+            <h2 className="text-[#0c2340] text-3xl md:text-4xl font-bold tracking-tight uppercase">
+              Our Services
+            </h2>
+            <div className="w-12 h-1 bg-[#e63946] mt-3 mx-auto md:mx-0" />
+            <p className="text-neutral-600 text-sm mt-4 leading-relaxed max-w-xl mx-auto md:mx-0">
+              From routine oil changes to complex structural repairs, our facility is equipped with dealership-level technology for every requirement.
+            </p>
           </div>
-          <p className="text-neutral-600 text-sm mt-6 leading-relaxed">
-            From routine oil changes to complex structural repairs, our facility is equipped for every requirement.
-          </p>
+          <div className="mt-6 md:mt-0">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-[#0056b3] hover:text-[#0c2340] text-xs font-bold uppercase tracking-widest transition-colors"
+            >
+              View All Services <span>→</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
           {services.map((service, i) => (
             <div
               key={i}
-              className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)] bg-white border border-neutral-200 rounded-xl p-8 flex flex-col items-center text-center relative overflow-hidden transition-all duration-300 group hover:bg-[#0c2340] hover:border-[#0c2340] hover:shadow-2xl hover:-translate-y-2 min-h-[300px] gsap-reveal-service"
+              className="group bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col gsap-reveal-service"
             >
-              {/* Centered Icon Container */}
-              <div className="w-14 h-14 rounded-full flex items-center justify-center text-[#e63946] mb-6 transition-colors duration-300 bg-[#f8fafc] group-hover:bg-white/10 group-hover:text-[#e63946]">
-                {service.icon}
+              {/* Image Header */}
+              <div className="h-32 overflow-hidden relative bg-neutral-100">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
 
-              {/* Title */}
-              <h3 className="text-[#0c2340] font-bold text-lg mb-3 transition-colors duration-300 group-hover:text-white">
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-neutral-600 text-sm mb-6 leading-relaxed transition-colors duration-300 group-hover:text-neutral-300 font-normal">
-                {service.desc}
-              </p>
-
-              {/* Link CTA */}
-              <div className="mt-auto">
+              {/* Content Box */}
+              <div className="p-5 flex-1 flex flex-col">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="text-[#0056b3]">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-[#0c2340] font-bold text-base leading-tight">
+                    {service.title}
+                  </h3>
+                </div>
+                
+                <p className="text-neutral-600 text-xs leading-relaxed mb-4 flex-1">
+                  {service.desc}
+                </p>
+                
                 <Link
                   href="/services"
-                  className="text-[#0056b3] hover:underline group-hover:text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1 group/link transition-colors duration-300"
+                  className="text-[#e63946] hover:text-[#c92a37] text-xs font-bold uppercase tracking-wider flex items-center gap-1 transition-colors mt-auto w-fit"
                 >
-                  Read more <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
+                  Learn more <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </Link>
               </div>
-
-              {/* Hover bottom Accent Blue bar */}
-              <div className="absolute bottom-0 left-0 w-full h-[6px] bg-[#0056b3] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0" />
             </div>
           ))}
         </div>

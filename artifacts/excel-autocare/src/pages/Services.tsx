@@ -68,22 +68,50 @@ const getCategoryImageUrl = (categoryName: string) => {
 
 export default function Services() {
   const containerRef = useRef(null);
-  const [activeTab, setActiveTab] = useState(0);
   const { data: categoriesData } = useListServices({ query: { queryKey: getListServicesQueryKey() } });
 
   const categories = categoriesData && categoriesData.length > 0 ? categoriesData : FALLBACK_CATEGORIES;
-  const activeCategory = categories[activeTab] || categories[0] || FALLBACK_CATEGORIES[0];
-  const activeImageUrl = getCategoryImageUrl(activeCategory.name);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".gsap-service-card",
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: "power2.out" }
-      );
+      // Animate cards as they scroll into view
+      gsap.utils.toArray('.gsap-service-card').forEach((card: any) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.6, 
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom-=50",
+              toggleActions: "play none none none"
+            }
+          }
+        );
+      });
+      
+      // Animate category headers
+      gsap.utils.toArray('.gsap-category-header').forEach((header: any) => {
+        gsap.fromTo(header,
+          { opacity: 0, scale: 0.98 },
+          { 
+            opacity: 1, 
+            scale: 1,
+            duration: 0.8, 
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: header,
+              start: "top bottom-=100",
+              toggleActions: "play none none none"
+            }
+          }
+        );
+      });
     }, containerRef);
     return () => ctx.revert();
-  }, [activeTab, categories]);
+  }, [categories]);
 
   const getCategoryIcon = (index: number) => {
     switch (index) {
@@ -167,198 +195,104 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Services List Layout */}
+      {/* Stacked Services Layout */}
       <section className="py-24 bg-[#f8fafc] border-b border-slate-200" ref={containerRef}>
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-4 max-w-5xl space-y-24">
+          
+          {categories.map((category: any, index: number) => {
+            const imageUrl = getCategoryImageUrl(category.name);
+            return (
+              <div key={category.id} className="space-y-8">
+                {/* Category Header Card */}
+                <div className="gsap-category-header relative min-h-[260px] flex flex-col justify-end p-8 md:p-12 text-white border border-slate-200/10 rounded-none shadow-md overflow-hidden group">
+                  <img src={imageUrl} alt={category.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-slate-950/75 z-0 transition-opacity duration-500 group-hover:bg-slate-950/80" />
 
-          {/* Mobile Tabs (Grid of buttons instead of horizontal scroll) */}
-          <div className="lg:hidden grid grid-cols-2 gap-3 mb-8">
-            {categories.map((category, index) => {
-              const isActive = activeTab === index;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveTab(index)}
-                  className={`p-4 border font-bold text-[10px] uppercase tracking-wider transition-all flex flex-col items-center justify-center text-center gap-2 cursor-pointer rounded-none ${isActive
-                    ? "bg-[#0c2340] border-[#0c2340] text-white shadow-sm"
-                    : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
-                    } ${index === categories.length - 1 ? "col-span-2" : ""}`}
-                >
-                  <span className={isActive ? "text-[#8ab4f8]" : "text-[#0056b3]"}>
-                    {getCategoryIcon(index)}
-                  </span>
-                  <span className="truncate w-full">{category.name}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-
-            {/* Desktop Left Sidebar Tabs (Hidden on mobile) */}
-            <div className="hidden lg:block lg:col-span-4 space-y-6 sticky top-28">
-              <div className="space-y-3">
-                <span className="text-muted-foreground uppercase tracking-widest text-[10px] font-bold block mb-4 px-2">
-                  Service Categories
-                </span>
-                {categories.map((category, index) => {
-                  const isActive = activeTab === index;
-                  return (
-                    <button
-                      key={category.id}
-                      onClick={() => setActiveTab(index)}
-                      className={`w-full text-left p-5 border transition-all duration-300 flex items-center gap-4 cursor-pointer rounded-none ${isActive
-                        ? "bg-[#0c2340] border-[#0c2340] text-white shadow-md translate-x-1"
-                        : "bg-white border-slate-200 hover:bg-slate-50 text-slate-700 hover:border-slate-300"
-                        }`}
-                    >
-                      <div className={`w-10 h-10 flex items-center justify-center shrink-0 transition-colors rounded-none ${isActive ? "bg-white/10 text-[#8ab4f8]" : "bg-[#f8fafc] text-[#0056b3]"
-                        }`}>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-white/10 flex items-center justify-center text-[#8ab4f8] shadow-inner rounded-none backdrop-blur-sm">
                         {getCategoryIcon(index)}
                       </div>
-                      <div className="flex-1">
-                        <h3 className={`text-xs font-bold uppercase tracking-wide leading-normal ${isActive ? "text-white" : "text-[#0c2340]"}`}>
-                          {category.name}
-                        </h3>
-                        <p className={`text-[10px] mt-1 line-clamp-1 ${isActive ? "text-slate-300" : "text-muted-foreground"}`}>
-                          {category.description}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Ready for Service? CTA Card */}
-              <div className="relative overflow-hidden bg-[#0c2340] p-8 text-white shadow-md border border-slate-200/15 rounded-none">
-                <div className="relative z-10">
-                  <span className="inline-flex items-center bg-white/10 px-3 py-1 text-[10px] font-semibold text-white/90 border border-white/10 rounded-none">
-                    Premium Support
-                  </span>
-                  <h3 className="mt-4 text-xl font-bold tracking-tight uppercase">
-                    Ready for Service?
-                  </h3>
-                  <p className="mt-3 text-xs leading-relaxed text-slate-300">
-                    Schedule your vehicle service online to avoid waiting. Enjoy transparent pricing and OEM-standard diagnostics.
-                  </p>
-                  <Button
-                    size="lg"
-                    className="mt-6 w-full hover-beam bg-[#0056b3] hover:bg-[#0056b3]/90 text-white font-bold shadow-md cursor-pointer border-0 rounded-none"
-                    asChild
-                  >
-                    <Link href="/booking">
-                      Book Service Now
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Content Area (Selected Category & Grid of Service Cards) */}
-            <div className="lg:col-span-8 space-y-6">
-
-              {/* Active Category Header Card with Dynamic Category Image */}
-              <div className="relative min-h-[220px] flex flex-col justify-end p-8 text-white border border-slate-200/10 rounded-none shadow-md overflow-hidden">
-                <img src={activeImageUrl} alt={activeCategory.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-                <div className="absolute inset-0 bg-slate-950/75 z-0" />
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="w-10 h-10 bg-white/10 flex items-center justify-center text-[#8ab4f8] shadow-inner rounded-none">
-                      {getCategoryIcon(activeTab)}
+                      <span className="text-[#8ab4f8] uppercase tracking-[0.2em] text-xs font-black">
+                        Category 0{index + 1}
+                      </span>
                     </div>
-                    <span className="text-[#8ab4f8] uppercase tracking-widest text-[10px] font-black">
-                      Selected Category
-                    </span>
+                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight uppercase leading-snug">
+                      {category.name}
+                    </h2>
+                    <p className="text-sm text-slate-300 mt-3 max-w-2xl font-normal leading-relaxed">
+                      {category.description}
+                    </p>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase leading-snug">
-                    {activeCategory.name}
-                  </h2>
-                  <p className="text-xs md:text-sm text-slate-300 mt-2 max-w-xl font-normal leading-relaxed">
-                    {activeCategory.description}
-                  </p>
                 </div>
-              </div>
 
-              {/* Services Grid */}
-              <div className="grid sm:grid-cols-2 gap-6">
-                {activeCategory.services?.map((service) => (
-                  <Link
-                    key={service.id}
-                    href={`/booking?service=${service.id}`}
-                    className="block gsap-service-card select-none group"
-                  >
-                    <div className="bg-white border border-slate-200 border-l-4 border-l-transparent group-hover:border-l-[#0056b3] p-6 shadow-sm group-hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full rounded-none cursor-pointer">
-                      <div>
-                        <div className="flex items-start justify-between gap-4">
-                          <h3 className="text-sm font-bold text-[#0c2340] group-hover:text-[#0056b3] uppercase tracking-wide leading-snug transition-colors">
-                            {service.name}
-                          </h3>
-                          <div className="flex items-center gap-2 shrink-0">
-                            <span className="bg-[#f0f7ff] border border-[#0056b3]/15 text-[#0056b3] text-[9px] font-bold uppercase px-2 py-0.5 rounded-none">
-                              MGP SPARES
-                            </span>
-                            <ChevronRight size={14} className="text-slate-400 group-hover:text-[#0056b3] group-hover:translate-x-1 transition-all" />
+                {/* Services Grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.services?.map((service: any) => (
+                    <Link
+                      key={service.id}
+                      href={`/booking?service=${service.id}`}
+                      className="block gsap-service-card select-none group h-full"
+                    >
+                      <div className="bg-white border border-slate-200 border-t-4 border-t-transparent group-hover:border-t-[#0056b3] p-6 shadow-sm group-hover:shadow-lg transition-all duration-300 flex flex-col justify-between h-full rounded-none cursor-pointer">
+                        <div>
+                          <div className="flex items-start justify-between gap-4 mb-3">
+                            <h3 className="text-sm font-bold text-[#0c2340] group-hover:text-[#0056b3] uppercase tracking-wide leading-snug transition-colors">
+                              {service.name}
+                            </h3>
+                            <ChevronRight size={16} className="text-slate-400 group-hover:text-[#0056b3] group-hover:translate-x-1 transition-all shrink-0" />
                           </div>
+                          
+                          <span className="inline-block bg-[#f0f7ff] border border-[#0056b3]/15 text-[#0056b3] text-[9px] font-bold uppercase px-2 py-0.5 rounded-none mb-3">
+                            MGP SPARES
+                          </span>
+                          
+                          <p className="text-xs text-neutral-600 leading-relaxed font-normal">
+                            {service.description}
+                          </p>
                         </div>
-                        <p className="text-xs text-neutral-600 mt-3 leading-relaxed font-normal">
-                          {service.description}
-                        </p>
 
-                        {/* Feature Checklist */}
-                        <ul className="mt-4 space-y-2 border-t border-slate-100 pt-4">
-                          <li className="flex items-center gap-2 text-[11px] text-neutral-600 font-medium">
-                            <CheckCircle2 size={13} className="text-green-600 shrink-0" />
-                            <span>Maruti Authorized Standard</span>
-                          </li>
-                          <li className="flex items-center gap-2 text-[11px] text-neutral-600 font-medium">
-                            <CheckCircle2 size={13} className="text-green-600 shrink-0" />
-                            <span>Certified Mechanics Only</span>
-                          </li>
-                        </ul>
+                        <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                          <span className="text-[10px] text-muted-foreground font-semibold">
+                            Est: 2-4 Hours
+                          </span>
+                          <span className="text-[10px] text-[#0056b3] font-bold uppercase tracking-wider flex items-center gap-1 group-hover:underline">
+                            Book Now
+                          </span>
+                        </div>
                       </div>
-
-                      <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <span className="text-[10px] text-muted-foreground font-semibold">
-                          Est: 2-4 Hours
-                        </span>
-                        <span className="text-[10px] text-[#0056b3] font-bold uppercase tracking-wider group-hover:underline flex items-center gap-0.5">
-                          Book Now
-                          <ChevronRight size={12} />
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Ready for Service? CTA Card for Mobile View (Hidden on desktop) */}
-              <div className="lg:hidden relative overflow-hidden bg-[#0c2340] p-8 text-white shadow-md mt-8 border border-slate-200/15 rounded-none">
-                <div className="relative z-10">
-                  <span className="inline-flex items-center bg-white/10 px-3 py-1 text-[10px] font-semibold text-white/90 border border-white/10 rounded-none">
-                    Premium Support
-                  </span>
-                  <h3 className="mt-4 text-xl font-bold tracking-tight uppercase">
-                    Ready for Service?
-                  </h3>
-                  <p className="mt-3 text-xs leading-relaxed text-slate-300">
-                    Schedule your vehicle service online to avoid waiting. Enjoy transparent pricing and OEM-standard diagnostics.
-                  </p>
-                  <Button
-                    size="lg"
-                    className="mt-6 w-full hover-beam bg-[#0056b3] hover:bg-[#0056b3]/90 text-white font-bold shadow-md cursor-pointer border-0 rounded-none"
-                    asChild
-                  >
-                    <Link href="/booking">
-                      Book Service Now
                     </Link>
-                  </Button>
+                  ))}
                 </div>
               </div>
+            );
+          })}
 
+          {/* Ready for Service CTA */}
+          <div className="relative overflow-hidden bg-[#0c2340] p-10 md:p-16 text-white shadow-xl mt-12 border border-slate-200/15 rounded-none text-center">
+            <div className="absolute inset-0 opacity-10 mix-blend-overlay" style={{ backgroundImage: "radial-gradient(circle at center, #ffffff 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
+            <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+              <span className="inline-flex items-center bg-white/10 px-4 py-1.5 text-[10px] font-bold tracking-widest uppercase text-white/90 border border-white/10 rounded-none mb-6">
+                Premium Support
+              </span>
+              <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight uppercase">
+                Ready for Service?
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-slate-300">
+                Schedule your vehicle service online to avoid waiting. Enjoy transparent pricing and OEM-standard diagnostics from certified Maruti technicians.
+              </p>
+              <Button
+                size="lg"
+                className="mt-8 w-full sm:w-auto px-12 hover-beam bg-[#0056b3] hover:bg-[#0056b3]/90 text-white font-bold shadow-md cursor-pointer border-0 rounded-none uppercase tracking-widest"
+                asChild
+              >
+                <Link href="/booking">
+                  Book Service Now
+                </Link>
+              </Button>
             </div>
-
           </div>
+
         </div>
       </section>
     </div>

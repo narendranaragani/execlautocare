@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -18,6 +19,11 @@ const queryClient = new QueryClient();
 
 function Router() {
   const [location] = useLocation();
+
+  useEffect(() => {
+    // Reset window scroll position to the top on every route change
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <div className="flex flex-col min-h-screen">

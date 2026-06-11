@@ -62,7 +62,7 @@ export function Hero() {
     },
     {
       id: 5,
-      image: "https://i.pinimg.com/1200x/c4/9f/3c/c49f3c88d40de3ea57cb7a101442453a.jpg",
+      image: "https://i.pinimg.com/736x/3f/3d/0b/3f3d0bfdea3675850f834ef9139b55ac.jpg",
       title: "Premium Service",
       subtitle: "The care your car deserves."
     }
@@ -215,7 +215,7 @@ export function AboutPreview() {
             {/* First Main Image */}
             <div className="w-[82%] aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 p-2 bg-white">
               <img
-                src="https://i.pinimg.com/736x/e4/7e/44/e47e447d37b47b856e9b8fab3d746e39.jpg"
+                src="https://i.pinimg.com/736x/5f/5a/94/5f5a94210862f36b7bd2bf765ec7d676.jpg"
                 alt="Mechanic repairing car engine under the hood"
                 className="w-full h-full object-cover rounded-xl transition-transform duration-500 hover:scale-105"
               />
@@ -335,13 +335,13 @@ export function ServicesOverview() {
       title: "Maintenance",
       icon: <Calendar size={18} />,
       desc: "Comprehensive fluid, filter, and multi-point checks.",
-      image: "https://i.pinimg.com/1200x/50/7c/aa/507caac367c79e2a4ceb80d3459c5060.jpg",
+      image: "https://i.pinimg.com/736x/d7/db/26/d7db2644cbb05d4d4383d2dcae63d127.jpg",
     },
     {
       title: "Genuine Parts",
       icon: <Shield size={18} />,
       desc: "100% OEM parts for durability and factory safety.",
-      image: "https://i.pinimg.com/1200x/04/e5/10/04e5103abfbf7b25b3904fe6a36082ec.jpg",
+      image: "https://i.pinimg.com/1200x/e3/43/4c/e3434c536419dc1677a2a3b5c64de806.jpg",
     },
   ];
 
@@ -394,11 +394,11 @@ export function ServicesOverview() {
                     {service.title}
                   </h3>
                 </div>
-                
+
                 <p className="text-neutral-600 text-xs leading-relaxed mb-4 flex-1">
                   {service.desc}
                 </p>
-                
+
                 <Link
                   href="/services"
                   className="text-[#e63946] hover:text-[#c92a37] text-xs font-bold uppercase tracking-wider flex items-center gap-1 transition-colors mt-auto w-fit"

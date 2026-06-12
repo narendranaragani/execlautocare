@@ -49,21 +49,12 @@ import { sendBookingToSheets } from "@/lib/sheets";
 
 const MODELS = ["Swift", "Baleno", "Brezza", "WagonR", "Alto K10", "Dzire", "Ertiga", "XL6", "Ciaz", "S-Presso", "Celerio", "Fronx", "Jimny", "Grand Vitara", "Ignis"];
 const YEARS = Array.from({ length: 15 }, (_, i) => new Date().getFullYear() - i);
-const CITIES = ["Mumbai", "Pune", "Delhi", "Bangalore", "Chennai", "Kolkata", "Hyderabad"];
-const SERVICE_CENTERS = [
-  "Excel Autocare - Main Workshop (West)",
-  "Excel Autocare - Sector 5 Hub (East)",
-  "Excel Autocare - Prime Plaza Station (South)",
-  "Excel Autocare - Express Care Center (North)"
-];
 
 const bookingSchema = z.object({
   customerName: z.string().min(2, "Name must be at least 2 characters"),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
   email: z.string().email("Invalid email address").optional().or(z.literal("")),
   address: z.string().optional().or(z.literal("")),
-  city: z.string().min(1, "Please select an outlet city"),
-  serviceCenter: z.string().min(1, "Please select a service center"),
   carModel: z.string().min(1, "Please select a car model"),
   carYear: z.coerce.number().min(2000, "Please select a manufacturing year"),
   fuelType: z.enum(["petrol", "diesel", "cng", "hybrid"], { required_error: "Please select fuel type" }),
@@ -98,8 +89,6 @@ export default function Booking() {
       phone: "",
       email: "",
       address: "",
-      city: "",
-      serviceCenter: "",
       carModel: "",
       carYear: undefined,
       fuelType: undefined,
@@ -166,7 +155,7 @@ export default function Booking() {
         serviceIds: data.serviceIds,
         date: format(data.date, "yyyy-MM-dd"),
         slotId: data.slotId,
-        notes: `Address: ${data.address || "N/A"}. City: ${data.city}. Center: ${data.serviceCenter}. Pickup: ${data.pickupRequired}. ${data.notes || ""}`,
+        notes: `Address: ${data.address || "N/A"}. Pickup: ${data.pickupRequired}. ${data.notes || ""}`,
       }
     }, {
       onSuccess: (res) => {
@@ -181,13 +170,13 @@ export default function Booking() {
           phone:           data.phone,
           email:           data.email || "",
           address:         data.address || "",
-          city:            data.city,
+          city:            "",
           carModel:        data.carModel,
           carYear:         String(data.carYear),
           fuelType:        data.fuelType,
           registrationNo:  data.registrationNo || "",
           kilometers:      data.kilometers || "",
-          serviceCenter:   data.serviceCenter,
+          serviceCenter:   "",
           serviceNames:    resolvedServiceNames.join(", "),
           requestDate:     format(data.date, "yyyy-MM-dd"),
           appointmentSlot: resolvedSlotTime,
@@ -330,46 +319,10 @@ export default function Booking() {
                       <h2 className="text-xl font-extrabold uppercase text-[#0c2340] flex items-center gap-2">
                         <Car className="text-[#0056b3]" size={20} /> Car Detail Entry
                       </h2>
-                      <p className="text-xs text-slate-500 mt-1">Select your vehicle details and preferred location.</p>
+                      <p className="text-xs text-slate-500 mt-1">Select your vehicle details.</p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <FormField control={form.control} name="city" render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-[10px] font-bold uppercase tracking-widest text-slate-500">City</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="bg-[#f8fafc] border-slate-200 text-slate-800 focus:ring-[#0056b3] rounded-none h-12">
-                                <SelectValue placeholder="Select City" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent className="rounded-none">
-                              {CITIES.map(c => <SelectItem key={c} value={c.toLowerCase()}>{c}</SelectItem>)}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage className="text-[10px]" />
-                        </FormItem>
-                      )} />
-
-                      <FormField control={form.control} name="serviceCenter" render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Service Center</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="bg-[#f8fafc] border-slate-200 text-slate-800 focus:ring-[#0056b3] rounded-none h-12">
-                                <SelectValue placeholder="Select Center" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent className="rounded-none">
-                              {SERVICE_CENTERS.map(sc => <SelectItem key={sc} value={sc} className="text-xs">{sc}</SelectItem>)}
-                            </SelectContent>
-                          </Select>
-                          <FormMessage className="text-[10px]" />
-                        </FormItem>
-                      )} />
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-6 pt-4">
+                    <div className="grid md:grid-cols-3 gap-6">
                       <FormField control={form.control} name="carModel" render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Car Model</FormLabel>
@@ -428,7 +381,7 @@ export default function Booking() {
                     <div className="pt-8 flex justify-end">
                       <Button 
                         type="button" 
-                        onClick={() => handleNext(['city', 'serviceCenter', 'carModel', 'carYear', 'fuelType'])}
+                        onClick={() => handleNext(['carModel', 'carYear', 'fuelType'])}
                         className="bg-[#0056b3] hover:bg-[#0056b3]/90 text-white rounded-none px-8 py-6 uppercase font-bold tracking-widest"
                       >
                         Next Step <ChevronRight size={16} className="ml-2" />

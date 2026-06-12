@@ -119,7 +119,7 @@ export default function About() {
             <div className="lg:col-span-5 space-y-8">
               <div className="relative overflow-hidden rounded-2xl shadow-xl border border-slate-200/80 p-2 bg-white">
                 <img
-                  src="https://i.pinimg.com/736x/05/0c/0a/050c0a7286af4e0a391e3a161ebbe947.jpg"
+                  src="https://i.pinimg.com/1200x/0d/59/a6/0d59a6f5f12fa3f13087a749f2156a69.jpg"
                   alt="Certified technician performing OBD diagnostic test"
                   className="w-full aspect-[4/3] object-cover rounded-xl transition-transform duration-500 hover:scale-105"
                 />

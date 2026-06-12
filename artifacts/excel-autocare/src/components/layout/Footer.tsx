@@ -23,7 +23,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-2">
+          <div className="hidden md:block lg:col-span-2">
             <h3 className="text-xs font-semibold mb-5 text-white/90 uppercase tracking-widest">Quick Links</h3>
             <ul className="space-y-3">
               {['Home', 'About Us', 'Our Services', 'Book a Service', 'Contact Us'].map((item, i) => (
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="lg:col-span-3">
+          <div className="hidden md:block lg:col-span-3">
             <h3 className="text-xs font-semibold mb-5 text-white/90 uppercase tracking-widest">Premium Services</h3>
             <ul className="space-y-3 text-sm font-medium text-white/60">
               {['Periodic Maintenance', 'Car Body Works', 'Premium Paint Jobs', 'Mechanical Workshop', 'Genuine Spare Parts'].map((item, i) => (
@@ -46,6 +46,7 @@ export function Footer() {
               ))}
             </ul>
           </div>
+
 
           {/* Contact */}
           <div className="lg:col-span-3">

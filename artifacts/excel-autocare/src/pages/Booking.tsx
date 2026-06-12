@@ -6,6 +6,32 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { format, addDays } from "date-fns";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, Car, Calendar as CalendarIcon, User, Wrench, ChevronRight, ChevronLeft, MapPin } from "lucide-react";
+import { SEO } from "@/components/layout/SEO";
+
+const bookingPageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://excelautocare.in/booking/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://excelautocare.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Book Service",
+          "item": "https://excelautocare.in/booking"
+        }
+      ]
+    }
+  ]
+};
+
 
 import { useListServices, getListServicesQueryKey, useGetAvailableSlots, getGetAvailableSlotsQueryKey, useCreateBooking } from "@workspace/api-client-react";
 import { BookingInputFuelType } from "@workspace/api-client-react/src/generated/api.schemas";
@@ -190,6 +216,12 @@ export default function Booking() {
   if (isSuccess) {
     return (
       <div className="min-h-screen bg-[#f8fafc] pt-32 pb-24 flex items-center justify-center px-4 font-sans text-[#0c2340]">
+        <SEO
+          title="Booking Confirmed | Excel Autocare"
+          description="Your Maruti Suzuki service appointment has been successfully scheduled. We look forward to servicing your vehicle."
+          canonicalUrl="https://excelautocare.in/booking"
+          schemaMarkup={bookingPageSchema}
+        />
         <div className="bg-white border border-slate-200 p-10 rounded-none text-center max-w-md w-full shadow-md">
           <div className="w-16 h-16 bg-green-50 border border-green-200 rounded-none flex items-center justify-center text-green-600 mx-auto mb-6">
             <CheckCircle size={32} />
@@ -218,6 +250,13 @@ export default function Booking() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans pb-24 text-[#0c2340]">
+      <SEO
+        title="Book Your Service | Excel Autocare Authorized Maruti Station"
+        description="Schedule your Maruti Suzuki service appointment online. Complete our 4-step booking form to secure your diagnostic check, mechanical repair, or denting painting slot."
+        keywords="car service booking online, schedule Maruti repair, auto service appointment, authorized garage slot"
+        canonicalUrl="https://excelautocare.in/booking"
+        schemaMarkup={bookingPageSchema}
+      />
       {/* Header */}
       <section className="pt-32 pb-10 bg-[#0c2340] border-b border-slate-800 text-white">
         <div className="container mx-auto px-4 text-center max-w-3xl">

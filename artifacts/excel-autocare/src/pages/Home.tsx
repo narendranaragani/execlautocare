@@ -456,7 +456,7 @@ export function Stats() {
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1920&q=80" alt="stats bg" className="absolute inset-0 w-full h-full object-cover" />
+      <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1920&q=80" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 img-overlay-dark" />
 
       <div className="container relative z-10 mx-auto px-4">
@@ -468,9 +468,9 @@ export function Stats() {
             { label: "Satisfaction Rate", value: displayStats.customerSatisfaction, suffix: "%" },
           ].map((stat, i) => (
             <div key={i} className="space-y-2 py-4">
-              <h3 className="text-3xl md:text-4xl text-white font-bold">
+              <div className="text-3xl md:text-4xl text-white font-bold">
                 <Counter end={stat.value} />{stat.suffix}
-              </h3>
+              </div>
               <p className="text-white/70 text-xs uppercase tracking-wider">{stat.label}</p>
             </div>
           ))}
@@ -540,7 +540,8 @@ export function Testimonials() {
       {/* Subtle Transparent Car Watermark in the background */}
       <img
         src="/car-watermark.png"
-        alt="Car blueprint"
+        alt=""
+        aria-hidden="true"
         className="absolute right-4 bottom-4 w-96 h-auto opacity-[0.06] pointer-events-none select-none z-0"
       />
 

@@ -1,6 +1,65 @@
 import { useState, useEffect } from "react";
 import { MapPin, Phone, Clock, MessageCircle, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/layout/SEO";
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://excelautocare.in/contact/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://excelautocare.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact Us",
+          "item": "https://excelautocare.in/contact"
+        }
+      ]
+    },
+    {
+      "@type": "AutoRepair",
+      "@id": "https://excelautocare.in/#autorepair",
+      "name": "Excel Autocare",
+      "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80",
+      "telephone": "+919876543210",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Tech Park Road, Industrial Area",
+        "addressLocality": "Mumbai",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.081827,
+        "longitude": 72.827725
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "10:00",
+          "closes": "15:00"
+        }
+      ]
+    }
+  ]
+};
 
 export default function Contact() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +77,15 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white font-sans pb-24">
+      <SEO
+        title="Contact Us | Excel Autocare Maruti Suzuki Workshop Location"
+        description="Get in touch with Excel Autocare. Contact our Maruti Suzuki service centers in Mumbai and Pune. View map directions, opening hours, phone number, and WhatsApp links."
+        keywords="Maruti Suzuki service contact, car workshop address, car mechanic phone number, garage opening hours"
+        canonicalUrl="https://excelautocare.in/contact"
+        schemaMarkup={contactPageSchema}
+      />
       {/* Header */}
+
       <section className="pt-32 pb-20 relative overflow-hidden">
         <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80" alt="contact bg" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 img-overlay-dark" />

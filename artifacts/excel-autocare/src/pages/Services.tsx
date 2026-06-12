@@ -5,6 +5,72 @@ import { useListServices, getListServicesQueryKey } from "@workspace/api-client-
 import { Wrench, Shield, Droplet, Settings, Calendar, CheckCircle2, XCircle, ChevronRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEO } from "@/components/layout/SEO";
+
+const servicesPageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://excelautocare.in/services/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://excelautocare.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://excelautocare.in/services"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Periodic Car Maintenance",
+      "provider": {
+        "@type": "AutoRepair",
+        "name": "Excel Autocare"
+      },
+      "description": "Authorized Maruti Suzuki periodic maintenance checks including oil change, filter changes, electrical assessment, and tyre care."
+    },
+    {
+      "@type": "Service",
+      "name": "Body Repair & Denting Painting",
+      "provider": {
+        "@type": "AutoRepair",
+        "name": "Excel Autocare"
+      },
+      "description": "Laser-guided chassis realignment, paintless dent removal (PDR), thermal paint baking booth services."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://excelautocare.in/services/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does servicing at Excel Autocare void my Maruti Suzuki warranty?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Excel Autocare is an Authorized Maruti Suzuki Service Station. We use 100% Maruti Suzuki Genuine Parts (MGP) and strictly follow the factory diagnostic and repair protocols, meaning your warranty remains fully intact."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What parts are used for replacements?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We use 100% Maruti Genuine Parts (MGP) sourced directly from Maruti Suzuki's authorized channels. We refuse to use cheap duplicates or uncertified aftermarket components."
+          }
+        }
+      ]
+    }
+  ]
+};
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -125,9 +191,17 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans pb-24 text-[#0c2340]">
+      <SEO
+        title="Services | Excel Autocare Authorized Maruti Service"
+        description="Explore our specialized Maruti Suzuki services. From denting and painting in thermal baking booths to engine diagnostics, periodic maintenance, and wheel alignment."
+        keywords="Maruti Suzuki denting painting, car bumper replacement, OBD engine scanning, periodic car maintenance service"
+        canonicalUrl="https://excelautocare.in/services"
+        schemaMarkup={servicesPageSchema}
+      />
       {/* Header */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        <img src="https://i.pinimg.com/736x/85/27/34/852734884cae8a18ab0de459c46c3b3f.jpg" alt="services bg" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://i.pinimg.com/736x/85/27/34/852734884cae8a18ab0de459c46c3b3f.jpg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+
         <img src="" alt="services bg" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 img-overlay-dark" />
         <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">

@@ -4,8 +4,49 @@ import { Button } from "@/components/ui/button";
 import { Shield, Wrench, Zap, CheckCircle2, Car } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEO } from "@/components/layout/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://excelautocare.in/#organization",
+      "name": "Excel Autocare",
+      "url": "https://excelautocare.in/",
+      "logo": "https://excelautocare.in/logo.png",
+      "telephone": "+919876543210",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Tech Park Road, Industrial Area",
+        "addressLocality": "Mumbai",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400001",
+        "addressCountry": "IN"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://excelautocare.in/about/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://excelautocare.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About Us",
+          "item": "https://excelautocare.in/about"
+        }
+      ]
+    }
+  ]
+};
 
 export default function About() {
   const timelineRef = useRef(null);
@@ -41,6 +82,13 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#0c2340]">
+      <SEO
+        title="About Us | Excel Autocare Authorized Maruti Service"
+        description="Learn more about Excel Autocare, a premium Maruti Suzuki Authorized Service Station. Offering dealership-grade diagnostics, paint booths, and certified mechanics since 2012."
+        keywords="Maruti Suzuki mechanics, car workshop history, authorized car garage, certified auto technicians"
+        canonicalUrl="https://excelautocare.in/about"
+        schemaMarkup={aboutPageSchema}
+      />
       {/* Page Header with Premium Diagnostic Bay Image */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <img

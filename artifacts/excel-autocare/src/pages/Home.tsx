@@ -695,7 +695,7 @@ export function CTABanner() {
               <Link href="/booking">Book Service Now</Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="border-white/20 text-white hover:bg-white/10 hover:border-white/40 backdrop-blur-sm font-bold shadow-md rounded-xl px-8 py-6 h-auto text-base w-full sm:w-auto cursor-pointer transition-all duration-300">
-              <a href="tel:+919876543210">Call Now</a>
+              <a href="tel:+919398328874">Call Now</a>
             </Button>
           </div>
         </div>

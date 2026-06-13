@@ -9,20 +9,20 @@ const homepageSchema = {
   "logo": "https://excelautocare.in/logo.png",
   "@id": "https://excelautocare.in/#autorepair",
   "url": "https://excelautocare.in/",
-  "telephone": "+919876543210",
+  "telephone": "+919398328874",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "123 Tech Park Road, Industrial Area",
-    "addressLocality": "Mumbai",
-    "addressRegion": "Maharashtra",
-    "postalCode": "400001",
+    "streetAddress": "11-10-825, 16-A-1, Raprathi nagar",
+    "addressLocality": "Khammam",
+    "addressRegion": "Telangana",
+    "postalCode": "507001",
     "addressCountry": "IN"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 19.081827,
-    "longitude": 72.827725
+    "latitude": 17.2473,
+    "longitude": 80.1514
   },
   "openingHoursSpecification": [
     {
@@ -46,11 +46,11 @@ const homepageSchema = {
   "areaServed": [
     {
       "@type": "AdministrativeArea",
-      "name": "Mumbai"
+      "name": "Khammam"
     },
     {
       "@type": "AdministrativeArea",
-      "name": "Pune"
+      "name": "Telangana"
     }
   ]
 };

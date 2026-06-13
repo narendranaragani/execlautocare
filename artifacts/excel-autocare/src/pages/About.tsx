@@ -17,10 +17,10 @@ const aboutPageSchema = {
       "name": "Excel Auto Care",
       "url": "https://excelautocare.in/",
       "logo": "https://excelautocare.in/logo.png",
-      "telephone": "+919876543210",
+      "telephone": "+919398328874",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Wyra Road, Near bypass",
+        "streetAddress": "11-10-825, 16-A-1, Raprathi nagar",
         "addressLocality": "Khammam",
         "addressRegion": "Telangana",
         "postalCode": "507001",

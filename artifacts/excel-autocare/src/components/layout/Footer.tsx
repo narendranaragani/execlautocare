@@ -54,11 +54,11 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-white/60 font-medium">
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-white/40 shrink-0 mt-0.5" />
-                <span className="leading-relaxed">Excel Autocare, 123 Tech Park Road, Industrial Area, Mumbai 400001</span>
+                <span className="leading-relaxed">Excel Autocare, 11-10-825, 16-A-1, Raprathi nagar, Khammam, Telangana 507001</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-white/40 shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-white transition-colors">+91 98765 43210</a>
+                <a href="tel:+919398328874" className="hover:text-white transition-colors">+91 93983 28874</a>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="h-4 w-4 text-white/40 shrink-0 mt-0.5" />

@@ -52,7 +52,7 @@ export function Navbar() {
           "fixed top-0 z-50 w-full transition-all duration-300",
           transparent
             ? "bg-transparent border-transparent py-4"
-            : "bg-white/95 backdrop-blur-md shadow-sm border-b border-border py-2"
+            : "bg-white/95 backdrop-blur-md shadow-sm border-b border-border py-0"
         )}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ export function Navbar() {
                   src="/logo.png"
                   alt="Excel Autocare"
                   className={cn(
-                    "h-25 mt-4 w-auto object-contain transition-all duration-300",
+                    "h-25 mt-4 w-auto mb-4 object-contain transition-all duration-300",
                     transparent && "brightness-0 invert"
                   )}
                 />
@@ -100,7 +100,7 @@ export function Navbar() {
                   src="/mr.png"
                   alt="Maruti Suzuki Nexa"
                   className={cn(
-                    "h-10 md:h-10 w-auto object-contain transition-all duration-300",
+                    "h-9 md:h-14 w-auto object-contain transition-all duration-300",
                     transparent && "brightness-0 invert"
                   )}
                 />

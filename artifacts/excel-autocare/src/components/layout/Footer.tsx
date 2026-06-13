@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Phone, MapPin, Clock, ShieldCheck, Facebook, Instagram, Youtube } from "lucide-react";
+import { Phone, MapPin, Clock, ShieldCheck, Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
 
 export function Footer() {
   return (
@@ -59,6 +59,10 @@ export function Footer() {
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-white/40 shrink-0" />
                 <a href="tel:+919398328874" className="hover:text-white transition-colors">+91 93983 28874</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <MessageCircle className="h-4 w-4 text-white/40 shrink-0" />
+                <a href="https://wa.me/919398328874" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">+91 93983 28874 (WhatsApp)</a>
               </li>
               <li className="flex items-start gap-3">
                 <Clock className="h-4 w-4 text-white/40 shrink-0 mt-0.5" />

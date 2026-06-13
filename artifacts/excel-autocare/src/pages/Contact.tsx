@@ -87,7 +87,7 @@ export default function Contact() {
       {/* Header */}
 
       <section className="pt-32 pb-20 relative overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80" alt="contact bg" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://i.pinimg.com/736x/d0/c3/51/d0c351ea3bb9336c5b04e08846b63f8c.jpg" alt="contact bg" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 img-overlay-dark" />
         <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">
           <span className="text-white/60 uppercase tracking-widest text-xs font-medium mb-3 block">Reach Out</span>
@@ -100,7 +100,7 @@ export default function Contact() {
 
       <div className="container mx-auto px-4 -mt-10 relative z-20">
         <div className="grid lg:grid-cols-3 gap-8">
-          
+
           {/* Contact Info Column */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-card border border-border p-8 rounded-2xl shadow-sm h-full flex flex-col relative overflow-hidden">
@@ -110,7 +110,7 @@ export default function Contact() {
                   {isOpen ? "Currently Open" : "Currently Closed"}
                 </div>
               </div>
-              
+
               <div className="space-y-8 flex-grow">
                 <div className="flex items-start gap-4">
                   <div className="bg-secondary p-3 rounded-full text-accent shrink-0">
@@ -143,6 +143,17 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
+                  <div className="bg-secondary p-3 rounded-full text-[#25D366] shrink-0">
+                    <MessageCircle size={18} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary mb-1 text-sm">WhatsApp Us</h3>
+                    <p className="text-muted-foreground text-xs mb-2">Send us message or repair pictures.</p>
+                    <a href="https://wa.me/919398328874" target="_blank" rel="noreferrer" className="text-[#25D366] font-bold text-base hover:text-[#20bd5a] transition-colors">+91 93983 28874</a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
                   <div className="bg-secondary p-3 rounded-full text-accent shrink-0">
                     <Clock size={18} />
                   </div>
@@ -169,13 +180,13 @@ export default function Contact() {
           {/* Map Column */}
           <div className="lg:col-span-2">
             <div className="bg-card border border-border p-2 rounded-2xl h-full min-h-[500px] shadow-sm">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15215.811659978713!2d80.1417!3d17.2473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3520dfdfdf!2sKhammam%2C%20Telangana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0, borderRadius: '0.75rem', minHeight: '500px' }} 
-                allowFullScreen={true} 
-                loading="lazy" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15215.811659978713!2d80.1417!3d17.2473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3520dfdfdf!2sKhammam%2C%20Telangana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '0.75rem', minHeight: '500px' }}
+                allowFullScreen={true}
+                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade">
               </iframe>
             </div>

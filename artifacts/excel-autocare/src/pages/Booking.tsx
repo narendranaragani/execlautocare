@@ -33,8 +33,7 @@ const bookingPageSchema = {
 };
 
 
-import { useListServices, getListServicesQueryKey, useGetAvailableSlots, getGetAvailableSlotsQueryKey, useCreateBooking } from "@workspace/api-client-react";
-import { BookingInputFuelType } from "@workspace/api-client-react/src/generated/api.schemas";
+import { useListServices, getListServicesQueryKey, useGetAvailableSlots, getGetAvailableSlotsQueryKey, useCreateBooking, BookingInputFuelType } from "@workspace/api-client-react";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -235,7 +234,7 @@ export default function Booking() {
     hidden: { opacity: 0, x: 20 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
     exit: { opacity: 0, x: -20, transition: { duration: 0.3 } }
-  };
+  } as const;
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans pb-24 text-[#0c2340]">

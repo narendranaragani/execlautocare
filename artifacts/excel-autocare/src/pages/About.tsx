@@ -73,18 +73,18 @@ export default function About() {
   }, []);
 
   const timeline = [
-    { year: "2012", title: "Foundation", desc: "Started as a small 2-bay workshop with a commitment to honest pricing." },
-    { year: "2015", title: "Maruti Authorization", desc: "Became an official Maruti Suzuki Authorized Service Station." },
-    { year: "2018", title: "Expansion", desc: "Upgraded to a 10-bay facility with state-of-the-art diagnostic equipment." },
-    { year: "2021", title: "OBD Diagnostic Suite", desc: "Integrated dealer-grade computerized scanning and diagnostics." },
-    { year: "2023", title: "Premium Paint Booth", desc: "Added thermal baking booths for showroom-quality paint restoration." }
+    { year: "1991", title: "Establishment", desc: "Founded as the first Maruti Suzuki Authorized Service Station in Khammam." },
+    { year: "2005", title: "Diagnostic Innovation", desc: "Equipped workshop with state-of-the-art computerized diagnostic scanning tools." },
+    { year: "2012", title: "Facility Expansion", desc: "Expanded the workshop to a multi-bay facility to handle high service volumes." },
+    { year: "2018", title: "Bodyshop Upgrade", desc: "Added premium denting & painting booths with Cashless Claim facility." },
+    { year: "2026", title: "Digital Operations", desc: "Introduced real-time booking and digital updates to provide convenient car care." }
   ];
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#0c2340]">
       <SEO
         title="About Us | Excel Autocare Authorized Maruti Service"
-        description="Learn more about Excel Autocare, a premium Maruti Suzuki Authorized Service Station. Offering dealership-grade diagnostics, paint booths, and certified mechanics since 2012."
+        description="Learn more about Excel Autocare, the first Maruti Suzuki Authorized Service Station in Khammam. Offering dealership-grade diagnostics, paint booths, and certified mechanics since 1991."
         keywords="Maruti Suzuki mechanics, car workshop history, authorized car garage, certified auto technicians"
         canonicalUrl="https://excelautocare.in/about"
         schemaMarkup={aboutPageSchema}
@@ -130,11 +130,11 @@ export default function About() {
                 <h3 className="text-lg font-black text-[#0c2340] mb-6 uppercase tracking-wider">By The Numbers</h3>
                 <div className="grid grid-cols-3 gap-4 text-center md:text-left">
                   <div>
-                    <div className="text-3xl font-black text-[#0056b3]">12+</div>
+                    <div className="text-3xl font-black text-[#0056b3]">35+</div>
                     <div className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mt-1">Years Exp</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-black text-[#0056b3]">15k+</div>
+                    <div className="text-3xl font-black text-[#0056b3]">80k+</div>
                     <div className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mt-1">Cars Serviced</div>
                   </div>
                   <div>
@@ -145,21 +145,46 @@ export default function About() {
               </div>
             </div>
 
-            {/* Right Column (Grid span 7): Mission & Vision Content */}
+            {/* Right Column (Grid span 7): Heritage & Copy Content */}
             <div className="lg:col-span-7 space-y-6">
               <span className="text-[#0056b3] uppercase tracking-[0.2em] text-xs font-black bg-[#f0f7ff] px-3.5 py-1 rounded-full border border-[#0056b3]/20 inline-block">
-                Our Core Mission
+                Our Heritage
               </span>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#0c2340] tracking-tight">Our Mission & Vision</h2>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#0c2340] tracking-tight">Khammam's First Authorized Station</h2>
               <div className="w-16 h-1 bg-[#0056b3] rounded-full"></div>
 
               <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
-                Excel Autocare was founded on a very simple premise: getting your vehicle serviced should not be stressful, confusing, or unnecessarily expensive. For over a decade, we have been bridging the gap between the high technical standards of an official dealership and the personal touch of a local mechanic.
+                <strong>Excel Auto Care</strong> is a long-standing and the <strong>First Maruti Suzuki Authorized Service Station in Khammam</strong>, proudly serving car owners since its establishment in <strong>1991</strong>.
               </p>
 
               <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
-                As an Authorized Maruti Suzuki Service Center, we hold ourselves to rigorous factory standards. Every bolt tightened, every drop of oil poured, and every diagnostic scan run is performed exactly as the manufacturer intended. We don't guess; we know.
+                We provide professional vehicle maintenance and repairs using factory-trained technicians, genuine spare parts, and manufacturer-approved diagnostics and equipment. We ensure that every car is serviced according to official standards, which helps preserve factory warranties and maximize vehicle performance.
               </p>
+
+              <p className="text-sm md:text-base text-neutral-600 leading-relaxed font-normal">
+                From scheduled minor maintenance checks to complex engine repairs, including accidental Bodyshop repairs, we provide a secure, reliable, and trustworthy option for all car owners.
+              </p>
+
+              {/* Key Features List */}
+              <div className="pt-6 border-t border-slate-100">
+                <h3 className="text-xs uppercase tracking-[0.2em] font-black text-[#0c2340] mb-4">Key Features & Benefits</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {[
+                    "Skilled & Trained Technicians",
+                    "100% Genuine Spare Parts",
+                    "State of the Art Equipment",
+                    "Convenient Location",
+                    "Body Shop with Cashless Claim facility for all major insurance companies"
+                  ].map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5">
+                      <span className="text-[#0056b3] mt-0.5 shrink-0">
+                        <CheckCircle2 size={16} />
+                      </span>
+                      <span className="text-sm text-neutral-700 font-semibold leading-tight">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

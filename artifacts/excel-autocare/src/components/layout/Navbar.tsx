@@ -100,7 +100,7 @@ export function Navbar() {
                   src="/mr.png"
                   alt="Maruti Suzuki Nexa"
                   className={cn(
-                    "h-30 md:h-30 w-50 object-contain transition-all duration-300",
+                    "h-10 md:h-10 w-auto object-contain transition-all duration-300",
                     transparent && "brightness-0 invert"
                   )}
                 />

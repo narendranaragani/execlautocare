@@ -97,29 +97,13 @@ export function Navbar() {
             <div className="flex items-center justify-end lg:flex-1 lg:min-w-[240px]">
               <div className="flex flex-col items-center">
                 <img
-                  src="/s.png"
+                  src="/mr.png"
                   alt="Maruti Suzuki Nexa"
                   className={cn(
-                    "h-10 md:h-20 w-35 object-contain transition-all duration-300",
+                    "h-30 md:h-30 w-50 object-contain transition-all duration-300",
                     transparent && "brightness-0 invert"
                   )}
                 />
-                <div className="flex items-center gap-1.5">
-                  <span
-                    className={cn(
-                      "w-5 h-[1.5px] transition-all duration-300",
-                      transparent ? "bg-white" : "bg-[#e63946]"
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "uppercase tracking-[0.15em] text-[8px] md:text-[9px] font-extrabold whitespace-nowrap transition-all duration-300",
-                      transparent ? "text-white/90" : "text-[#e63946]"
-                    )}
-                  >
-                    Authorised by NEXA
-                  </span>
-                </div>
               </div>
             </div>
           </div>

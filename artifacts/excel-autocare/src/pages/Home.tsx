@@ -445,33 +445,34 @@ function Counter({ end, duration = 2 }: { end: number, duration?: number }) {
 }
 
 export function Stats() {
-  const { data: stats } = useGetStats({ query: { queryKey: getGetStatsQueryKey() } });
-
-  const displayStats = stats || {
-    totalCarsServiced: 15400,
-    yearsInOperation: 12,
-    certifiedTechnicians: 45,
-    customerSatisfaction: 98
-  };
+  const statsData = [
+    { label: "Cars Serviced", value: 100, suffix: "K+" },
+    { label: "Years Experience", value: 35, suffix: "+" },
+    { label: "Certified Techs", value: 45, suffix: "+" },
+    { label: "Satisfaction Rate", value: 98, suffix: "%" },
+  ];
 
   return (
     <section className="py-24 relative overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1920&q=80" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+      <img
+        src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1920&q=80"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
       <div className="absolute inset-0 img-overlay-dark" />
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { label: "Cars Serviced", value: displayStats.totalCarsServiced, suffix: "+" },
-            { label: "Years Experience", value: displayStats.yearsInOperation, suffix: "" },
-            { label: "Certified Techs", value: displayStats.certifiedTechnicians, suffix: "" },
-            { label: "Satisfaction Rate", value: displayStats.customerSatisfaction, suffix: "%" },
-          ].map((stat, i) => (
+          {statsData.map((stat, i) => (
             <div key={i} className="space-y-2 py-4">
               <div className="text-3xl md:text-4xl text-white font-bold">
-                <Counter end={stat.value} />{stat.suffix}
+                <Counter end={stat.value} />
+                {stat.suffix}
               </div>
-              <p className="text-white/70 text-xs uppercase tracking-wider">{stat.label}</p>
+              <p className="text-white/70 text-xs uppercase tracking-wider">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>

@@ -108,13 +108,13 @@ export function Hero() {
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 mt-16 pointer-events-none">
         <div className="max-w-2xl ml-0 md:ml-8 lg:ml-12 pointer-events-auto">
           <div>
-            <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-x-2.5 gap-y-1.5 px-4 py-2.5 sm:py-1.5 mb-6 rounded-2xl sm:rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-[#00e5ff] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[10px] sm:text-xs font-bold shadow-lg max-w-[95vw] sm:max-w-full text-center">
+            <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-y-1.5 sm:gap-x-2 px-4 py-2.5 sm:py-1.5 mb-6 rounded-2xl sm:rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-[#00e5ff] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[10px] sm:text-xs font-bold shadow-lg max-w-[95vw] sm:max-w-full text-center">
               <span>Official Maruti Suzuki</span>
-              <div className="flex items-center gap-1.5 my-0.5 sm:my-0">
-                <img src="/arena1.png" className="h-[18px] sm:h-[22px] w-auto object-contain select-none rounded-sm" alt="Maruti Suzuki Arena" />
-                <img src="/nexa.png" className="h-[18px] sm:h-[22px] w-auto object-contain select-none rounded-sm" alt="Maruti Suzuki Nexa" />
+              <div className="flex items-center gap-1.5 sm:contents">
+                <img src="/arena1.png" className="h-[18px] sm:h-5 w-auto object-contain select-none" alt="Maruti Suzuki Arena" />
+                <img src="/nexa.png" className="h-[18px] sm:h-5 w-auto object-contain select-none" alt="Maruti Suzuki Nexa" />
               </div>
-              <span>Authorized Wo rkshop</span>
+              <span>Authorized Workshop</span>
             </div>
 
             <h1 className="text-white font-serif font-black mb-6 leading-[1.1] text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight drop-shadow-2xl">

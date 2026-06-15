@@ -38,19 +38,19 @@ export function Hero() {
   const slides = [
     {
       id: 1,
-      image: "https://i.pinimg.com/1200x/9d/83/f4/9d83f48752e4b71dd3052f2dc4bb5b5e.jpg",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781502371/prem1_rtmxhs.jpg",
       title: "Dealer-Grade Diagnostics",
       subtitle: "Precision matters."
     },
     {
       id: 2,
-      image: "https://i.pinimg.com/1200x/09/1d/c1/091dc145ce908fd2db512e0d0ceb1600.jpg",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781501638/hm2_hpg7lj.jpg",
       title: "Professional Mechanics",
       subtitle: "Expertise you can trust."
     },
     {
       id: 3,
-      image: "https://i.pinimg.com/736x/97/84/05/978405d431520c7d24c27ce456170374.jpg",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781501770/body_yisc3v.jpg",
       title: "Showroom-Quality Paint",
       subtitle: "Flawless finish every time."
     },
@@ -62,7 +62,7 @@ export function Hero() {
     },
     {
       id: 5,
-      image: "https://i.pinimg.com/736x/3f/3d/0b/3f3d0bfdea3675850f834ef9139b55ac.jpg",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781501565/hm1_fkairl.jpg ",
       title: "Premium Service",
       subtitle: "The care your car deserves."
     }
@@ -108,9 +108,14 @@ export function Hero() {
       <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 mt-16 pointer-events-none">
         <div className="max-w-2xl ml-0 md:ml-8 lg:ml-12 pointer-events-auto">
           <div>
-            <span className="inline-block px-4 py-1.5 mb-6 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-[#00e5ff] uppercase tracking-[0.2em] text-xs font-bold shadow-lg">
-              Official Maruti Suzuki Authorized Workshop
-            </span>
+            <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-x-2.5 gap-y-1.5 px-4 py-2.5 sm:py-1.5 mb-6 rounded-2xl sm:rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-[#00e5ff] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[10px] sm:text-xs font-bold shadow-lg max-w-[95vw] sm:max-w-full text-center">
+              <span>Official Maruti Suzuki</span>
+              <div className="flex items-center gap-1.5 my-0.5 sm:my-0">
+                <img src="/arena1.png" className="h-[18px] sm:h-[22px] w-auto object-contain select-none rounded-sm" alt="Maruti Suzuki Arena" />
+                <img src="/nexa.png" className="h-[18px] sm:h-[22px] w-auto object-contain select-none rounded-sm" alt="Maruti Suzuki Nexa" />
+              </div>
+              <span>Authorized Wo rkshop</span>
+            </div>
 
             <h1 className="text-white font-serif font-black mb-6 leading-[1.1] text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight drop-shadow-2xl">
               Your Trusted
@@ -317,13 +322,13 @@ export function ServicesOverview() {
       title: "Body Repair",
       icon: <Wrench size={18} />,
       desc: "Laser-guided chassis alignment and dent removal.",
-      image: "https://i.pinimg.com/736x/12/60/f7/1260f78552a8126f246d25ae1751385a.jpg",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781501887/repair_jphioj.jpg",
     },
     {
       title: "Paint Services",
       icon: <Droplet size={18} />,
       desc: "Computerized color matching and clear-coat repair.",
-      image: "https://i.pinimg.com/736x/93/f1/77/93f177a3f91806d6631e16b2f64150ff.jpg",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781502667/paint_ufzksz.jpg",
     },
     {
       title: "Mechanical",
@@ -341,7 +346,7 @@ export function ServicesOverview() {
       title: "Genuine Parts",
       icon: <Shield size={18} />,
       desc: "100% OEM parts for durability and factory safety.",
-      image: "https://i.pinimg.com/1200x/e3/43/4c/e3434c536419dc1677a2a3b5c64de806.jpg",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781501273/par_jebjdr.jpg",
     },
   ];
 

@@ -107,7 +107,7 @@ export default function About() {
       {/* Page Header with Premium Diagnostic Bay Image */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <img
-          src="https://i.pinimg.com/1200x/5e/91/72/5e9172640c492f0221ea1d5fdde99817.jpg"
+          src="https://i.pinimg.com/736x/50/b1/be/50b1be2fe89ea8643354ea35cc6ad1fd.jpg"
           alt="Premium luxury vehicle workshop diagnostic bay"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
@@ -186,7 +186,7 @@ export default function About() {
             <div className="lg:col-span-5 space-y-8">
               <div className="relative overflow-hidden rounded-2xl shadow-xl border border-slate-200/80 p-2 bg-white">
                 <img
-                  src="https://i.pinimg.com/1200x/0d/59/a6/0d59a6f5f12fa3f13087a749f2156a69.jpg"
+                  src="/car1.png"
                   alt="Certified technician performing OBD diagnostic test"
                   className="w-full aspect-[4/3] object-cover rounded-xl transition-transform duration-500 hover:scale-105"
                 />

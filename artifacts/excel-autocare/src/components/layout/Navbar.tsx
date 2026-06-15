@@ -97,7 +97,7 @@ export function Navbar() {
             <div className="flex items-center justify-end lg:flex-1 lg:min-w-[240px]">
               <div className="flex flex-col items-center">
                 <img
-                  src="/mr.png"
+                  src="/slogo.png "
                   alt="Maruti Suzuki Nexa"
                   className={cn(
                     "h-9 md:h-14 w-auto object-contain transition-all duration-300",

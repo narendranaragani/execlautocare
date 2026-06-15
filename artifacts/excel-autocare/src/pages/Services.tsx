@@ -200,9 +200,7 @@ export default function Services() {
       />
       {/* Header */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        <img src="https://i.pinimg.com/736x/85/27/34/852734884cae8a18ab0de459c46c3b3f.jpg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
-
-        <img src="" alt="services bg" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://i.pinimg.com/736x/85/27/34/852734884cae8a18ab0de459c46c3b3f.jpg" alt="services bg" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 img-overlay-dark" />
         <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">
           <span className="text-white/60 uppercase tracking-widest text-xs font-medium mb-3 block">Expertise</span>
@@ -279,7 +277,7 @@ export default function Services() {
               <div key={category.id} className="space-y-8">
                 {/* Category Header Card */}
                 <div className="gsap-category-header relative min-h-[260px] flex flex-col justify-end p-8 md:p-12 text-white border border-slate-200/10 rounded-none shadow-md overflow-hidden group">
-                  <img src={imageUrl} alt={category.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <img src={imageUrl} alt={category.name} className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-slate-950/75 z-0 transition-opacity duration-500 group-hover:bg-slate-950/80" />
 
                   <div className="relative z-10">

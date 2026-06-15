@@ -92,7 +92,7 @@ export function Hero() {
           <img
             src={slides[currentSlide].image}
             alt="Automotive Service"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
         </motion.div>
       </AnimatePresence>
@@ -140,13 +140,13 @@ export function Hero() {
 
               <div className="flex items-center gap-4 ml-4 hidden sm:flex">
                 <div className="flex -space-x-3">
-                  <img src="https://i.pravatar.cc/100?img=11" className="w-10 h-10 rounded-full border-2 border-[#0c2340]" alt="Customer" />
-                  <img src="https://i.pravatar.cc/100?img=32" className="w-10 h-10 rounded-full border-2 border-[#0c2340]" alt="Customer" />
-                  <img src="https://i.pravatar.cc/100?img=15" className="w-10 h-10 rounded-full border-2 border-[#0c2340]" alt="Customer" />
+                  <img src="https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781506965/r2_tqgd6c.jpg" className="w-10 h-10 rounded-full border-2 border-[#0c2340] object-cover object-center" alt="Customer" />
+                  <img src="https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781507121/r3_anrd5e.jpg" className="w-10 h-10 rounded-full border-2 border-[#0c2340] object-cover object-center" alt="Customer" />
+                  <img src="https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781506905/r1_z7wpl5.jpg" className="w-10 h-10 rounded-full border-2 border-[#0c2340] object-cover object-center" alt="Customer" />
                 </div>
                 <div className="text-xs text-white/80 font-medium">
-                  <span className="text-[#00e5ff] font-bold block text-sm">4.9/5</span>
-                  from 2,500+ reviews
+                  <span className="text-[#00e5ff] font-bold block text-sm">4.0/5</span>
+                  from 200+ reviews
                 </div>
               </div>
             </div>
@@ -222,7 +222,7 @@ export function AboutPreview() {
               <img
                 src="https://i.pinimg.com/736x/5f/5a/94/5f5a94210862f36b7bd2bf765ec7d676.jpg"
                 alt="Mechanic repairing car engine under the hood"
-                className="w-full h-full object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+                className="w-full h-full object-cover object-center rounded-xl transition-transform duration-500 hover:scale-105"
               />
             </div>
 
@@ -231,7 +231,7 @@ export function AboutPreview() {
               <img
                 src="https://i.pinimg.com/1200x/41/f5/c6/41f5c68e06005373c8922f47aad22edc.jpg"
                 alt="Car on a hydraulic lift undergoing repair"
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover object-center rounded-xl"
               />
             </div>
           </div>
@@ -385,7 +385,7 @@ export function ServicesOverview() {
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
@@ -463,7 +463,7 @@ export function Stats() {
         src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1920&q=80"
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
       <div className="absolute inset-0 img-overlay-dark" />
 
@@ -486,32 +486,37 @@ export function Stats() {
   );
 }
 
+
 export function Testimonials() {
   const testimonials = [
     {
-      quote: "The team at Excel Autocare diagnosed an issue two other workshops missed. Transparent pricing and genuine parts every time. My Baleno runs like new.",
-      author: "Rajesh M.",
-      car: "Baleno 2021",
-      initials: "RM"
+      quote:
+        "I was really impressed with the quality of the work, and I'll definitely be back next time my car needs a service. I highly recommend this place to anyone looking for a good deal and great service. The waiting area is also nice and clean. Thanks for the excellent service!",
+      author: "Pavan Pola",
+      car: "Swift Owner",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781506905/r1_z7wpl5.jpg",
     },
     {
-      quote: "Booked online, dropped the car, got updates on WhatsApp. Zero surprises on the bill. This is how every service center should operate.",
-      author: "Priya K.",
-      car: "Brezza 2022",
-      initials: "PK"
+      quote:
+        "Super fast service! On our way to Rajahmundry, our vehicle broke down. The Excel Auto Care team responded quickly and completed the clutch replacement in just 3 hours. They did an excellent job. Thanks to the entire Excel team!",
+      author: "Rajesh Cheekatla",
+      car: "Brezza Owner",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781506965/r2_tqgd6c.jpg",
     },
     {
-      quote: "Professional facility, courteous staff, and they actually showed me the replaced parts. I've been bringing my Swift here for 4 years.",
-      author: "Amir S.",
-      car: "Swift 2019",
-      initials: "AS"
+      quote:
+        "I experienced great service at this workshop. I would highly recommend Excel Auto Care to all vehicle owners who want to keep their cars well-maintained.",
+      author: "Abhishek Padhi",
+      car: "Dzire Owner",
+      image: "https://res.cloudinary.com/dlgqnmuhd/image/upload/v1781507121/r3_anrd5e.jpg",
     },
     {
-      quote: "The paint job they did after my accident is flawless. You literally can't tell where the damage was. Worth every rupee.",
-      author: "Deepa R.",
-      car: "Dzire 2020",
-      initials: "DR"
-    }
+      quote:
+        "They have provided the best service for my car (TS04EF1818) for the past three years. Truly worth the time and trust!",
+      author: "Swetha",
+      car: "Baleno (TS04EF1818)",
+      image: "https://cdn-icons-png.flaticon.com/512/6997/6997662.png",
+    },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -520,8 +525,9 @@ export function Testimonials() {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % testimonials.length);
     }, 6000);
+
     return () => clearInterval(timer);
-  }, [current, testimonials.length]);
+  }, [testimonials.length]);
 
   const handleNext = () => {
     setCurrent((prev) => (prev + 1) % testimonials.length);
@@ -540,10 +546,10 @@ export function Testimonials() {
       className="py-24 relative overflow-hidden border-b border-border bg-cover bg-center"
       style={{ backgroundImage: "url('/client-stories-bg.png')" }}
     >
-      {/* Light semi-transparent overlay to ensure text is fully legible while showing the car background */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-slate-50/75 z-0" />
 
-      {/* Subtle Transparent Car Watermark in the background */}
+      {/* Car Watermark */}
       <img
         src="/car-watermark.png"
         alt=""
@@ -552,18 +558,23 @@ export function Testimonials() {
       />
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
+        {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-[#0056b3] uppercase tracking-widest text-xs font-semibold mb-3 block">Client Stories</span>
+          <span className="text-[#0056b3] uppercase tracking-widest text-xs font-semibold mb-3 block">
+            Client Stories
+          </span>
+
           <h2 className="text-[#0c2340] font-['Bebas_Neue'] text-5xl md:text-6xl tracking-wide uppercase">
             Testimonials
           </h2>
+
           <div className="flex flex-col items-center gap-1 mt-3">
             <div className="w-16 h-[2.5px] bg-[#0056b3] rounded-full" />
             <div className="w-10 h-[2px] bg-[#e63946] rounded-full" />
           </div>
         </div>
 
-        {/* Carousel Container with true sliding track */}
+        {/* Carousel */}
         <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
           <motion.div
             className="flex"
@@ -573,34 +584,50 @@ export function Testimonials() {
             {testimonials.map((testimonial, i) => (
               <div key={i} className="w-full shrink-0 px-4 md:px-12">
                 <div className="relative bg-white border border-slate-100 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl hover:border-[#0056b3]/30 transition-all duration-300 flex flex-col md:flex-row gap-8 items-center md:items-start min-h-[280px]">
-                  {/* Left Side: Avatar, Name, Car Badge, Rating */}
+
+                  {/* Left Side */}
                   <div className="flex flex-col items-center md:items-start gap-3 shrink-0">
-                    <div className="w-16 h-16 rounded-full border-2 border-[#0056b3] bg-[#0c2340] flex items-center justify-center text-white shadow-md font-bold text-lg">
-                      {testimonial.initials}
+                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#0056b3] shadow-md bg-slate-100">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.author}
+                        className="w-full h-full object-cover object-center"
+                        loading="lazy"
+                      />
                     </div>
+
                     <div className="text-center md:text-left mt-2">
                       <p className="font-bold text-[#0c2340] text-base tracking-wide">
                         {testimonial.author}
                       </p>
+
                       <span className="inline-block px-2.5 py-0.5 mt-1 bg-[#f0f7ff] border border-[#0056b3]/20 rounded-full text-[#0056b3] text-xs font-semibold uppercase tracking-wider">
                         {testimonial.car}
                       </span>
                     </div>
-                    {/* Stars */}
+
+                    {/* Rating */}
                     <div className="flex items-center gap-1 mt-2">
                       {Array.from({ length: 5 }).map((_, idx) => (
-                        <Star key={idx} size={14} fill="currentColor" className="text-yellow-500 stroke-yellow-500" />
+                        <Star
+                          key={idx}
+                          size={14}
+                          fill="currentColor"
+                          className="text-yellow-500 stroke-yellow-500"
+                        />
                       ))}
                     </div>
                   </div>
 
-                  {/* Vertical Divider (desktop) */}
+                  {/* Divider */}
                   <div className="hidden md:block w-[1px] h-32 bg-slate-100 shrink-0 self-center" />
 
-                  {/* Right Side: Quote and Details */}
+                  {/* Right Side */}
                   <div className="flex-1 flex flex-col justify-between h-full relative w-full">
-                    {/* Large Background Quote Symbol */}
-                    <Quote size={48} className="text-slate-100 absolute -top-4 -right-2 stroke-[1.5]" />
+                    <Quote
+                      size={48}
+                      className="text-slate-100 absolute -top-4 -right-2 stroke-[1.5]"
+                    />
 
                     <p className="text-[#475569] text-base md:text-lg leading-relaxed italic font-medium pt-2 relative z-10">
                       "{testimonial.quote}"
@@ -617,7 +644,7 @@ export function Testimonials() {
           </motion.div>
         </div>
 
-        {/* Navigation Controls */}
+        {/* Controls */}
         <div className="flex justify-center items-center gap-6 mt-12 text-slate-700">
           <Button
             variant="outline"
@@ -629,13 +656,16 @@ export function Testimonials() {
             <ChevronLeft className="w-5 h-5" />
           </Button>
 
-          {/* Dots Indicator */}
+          {/* Dots */}
           <div className="flex items-center gap-2.5">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => handleDotClick(i)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === current ? "bg-[#0056b3] w-6" : "bg-slate-300 w-2 hover:bg-[#0056b3]/50"}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === current
+                  ? "bg-[#0056b3] w-6"
+                  : "bg-slate-300 w-2 hover:bg-[#0056b3]/50"
+                  }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
             ))}

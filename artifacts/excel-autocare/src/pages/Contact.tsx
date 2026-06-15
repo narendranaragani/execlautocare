@@ -87,7 +87,7 @@ export default function Contact() {
       {/* Header */}
 
       <section className="pt-32 pb-20 relative overflow-hidden">
-        <img src="https://i.pinimg.com/736x/d0/c3/51/d0c351ea3bb9336c5b04e08846b63f8c.jpg" alt="contact bg" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://i.pinimg.com/736x/d0/c3/51/d0c351ea3bb9336c5b04e08846b63f8c.jpg" alt="contact bg" className="absolute inset-0 w-full h-full object-cover object-center" />
         <div className="absolute inset-0 img-overlay-dark" />
         <div className="container mx-auto px-4 text-center max-w-3xl relative z-10">
           <span className="text-white/60 uppercase tracking-widest text-xs font-medium mb-3 block">Reach Out</span>

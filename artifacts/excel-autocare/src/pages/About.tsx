@@ -188,7 +188,7 @@ export default function About() {
                 <img
                   src="/car1.png"
                   alt="Certified technician performing OBD diagnostic test"
-                  className="w-full aspect-[4/3] object-cover rounded-xl transition-transform duration-500 hover:scale-105"
+                  className="w-full aspect-[4/3] object-cover object-center rounded-xl transition-transform duration-500 hover:scale-105"
                 />
               </div>
 

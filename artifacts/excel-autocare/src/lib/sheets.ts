@@ -22,7 +22,9 @@
 // ──────────────────────────────────────────────────────────────────
 // 🔧 PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE:
 // ──────────────────────────────────────────────────────────────────
-const SHEETS_WEBHOOK_URL = import.meta.env.VITE_SHEETS_WEBHOOK_URL || "";
+const SHEETS_WEBHOOK_URL = 
+  import.meta.env.VITE_SHEETS_WEBHOOK_URL || 
+  "https://script.google.com/macros/s/AKfycbwoTSyVNJGRh2qQFD90mDZyxgRurSUlqddYLFHyXWl7iTGCyydklY92Q42lA0UuZEujbQ/exec";
 
 export interface BookingSheetPayload {
   bookingRef: string;
@@ -70,6 +72,12 @@ export async function sendBookingToSheets(payload: BookingSheetPayload): Promise
     );
     return;
   }
+
+  console.log(
+    `[Sheets] Sending booking data to: ${
+      import.meta.env.VITE_SHEETS_WEBHOOK_URL ? "Environment Webhook URL" : "Fallback Webhook URL"
+    }`
+  );
 
   try {
     // Google Apps Script requires form-encoded POST (not JSON) for simple no-auth calls

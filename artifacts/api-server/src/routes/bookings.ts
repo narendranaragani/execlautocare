@@ -56,7 +56,7 @@ router.get("/slots", async (req, res) => {
     available: !bookedSet.has(slot.id),
   }));
 
-  res.json(slots);
+  return res.json(slots);
 });
 
 router.post("/", async (req, res) => {
@@ -84,7 +84,7 @@ router.post("/", async (req, res) => {
     })
     .returning();
 
-  res.status(201).json({
+  return res.status(201).json({
     id: booking.id,
     customerName: booking.customerName,
     phone: booking.phone,

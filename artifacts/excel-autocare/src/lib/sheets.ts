@@ -24,7 +24,7 @@
 // ──────────────────────────────────────────────────────────────────
 const SHEETS_WEBHOOK_URL = 
   import.meta.env.VITE_SHEETS_WEBHOOK_URL || 
-  "https://script.google.com/macros/s/AKfycbwoTSyVNJGRh2qQFD90mDZyxgRurSUlqddYLFHyXWl7iTGCyydklY92Q42lA0UuZEujbQ/exec";
+  "https://script.google.com/macros/s/AKfycbyboNK3-1vkExOOvxiB7_ln8u2M-vU2pHW5zEi4T4WVMUdYyqQu7AovhcxbsoX7wO7btg/exec";
 
 export interface BookingSheetPayload {
   bookingRef: string;
@@ -34,18 +34,13 @@ export interface BookingSheetPayload {
   customerName: string;
   phone: string;
   email: string;
-  address: string;
-  city: string;
 
   // ── Vehicle Details ───────────────────────────────────────────
   carModel: string;
   carYear: string;
   fuelType: string;
-  registrationNo: string;
-  kilometers: string;
 
   // ── Service Details ───────────────────────────────────────────
-  serviceCenter: string;
   serviceNames: string;      // comma-separated list
   requestDate: string;       // YYYY-MM-DD
   appointmentSlot: string;   // e.g. "10:00 AM"
